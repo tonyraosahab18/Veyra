@@ -1,529 +1,1268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080809">
-<title>VEYRA — Your Space, Your People</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
-:root{--bg:#080809;--panel:#111114;--panel2:#19191e;--red:#f12649;--white:#f7f7fa;--muted:#92929d;--line:#29292f;--green:#7ce6ad}*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 5% 10%,#a20d211b,transparent 35%),var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh}button,input,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--panel2);color:var(--white);padding:11px 14px;border-radius:10px}button:disabled{opacity:.55;cursor:wait}[hidden]{display:none!important}a{color:inherit;text-decoration:none}button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:2px}.top{height:68px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12;background:#09090bed;position:sticky;top:0;z-index:5;backdrop-filter:blur(15px)}.logo{font:800 22px Manrope,sans-serif;letter-spacing:4px}.logo span{color:var(--red)}.live{font-size:10px;color:var(--muted);letter-spacing:1.5px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);margin-right:8px}.primary{background:linear-gradient(110deg,#f12649,#b70e2e);border-color:#f12649;font-weight:700}.danger{color:#ff8499}.muted{color:var(--muted)}.small,.note{font-size:12px;color:var(--muted);line-height:1.7}.status{font-size:12px;min-height:18px;margin:8px 0;color:var(--green);overflow-wrap:anywhere}.status.error{color:#ff8499}input,textarea{width:100%;background:#09090b;color:white;border:1px solid #34343c;border-radius:10px;padding:13px;margin:7px 0 14px}textarea{resize:vertical;min-height:95px}label{font-size:12px;color:#d8d8df;font-weight:600}.wrap{width:min(1100px,92%);margin:auto}.auth-layout{min-height:calc(100vh - 130px);display:grid;grid-template-columns:1fr 420px;align-items:center;gap:55px;padding:45px 0}.hero h1{font:800 clamp(44px,6vw,76px)/1.05 Manrope,sans-serif;letter-spacing:-3px;margin:20px 0}.hero h1 span{color:var(--red)}.kicker{color:var(--red);font-size:10px;font-weight:700;letter-spacing:3px}.intro{color:#aaaab4;line-height:1.9;max-width:390px}.orbit{height:140px;width:140px;margin:35px 0;display:grid;place-items:center;border:1px solid #f1264930;border-radius:50%;box-shadow:0 0 0 20px #f1264906,0 0 0 40px #f1264903;font:800 82px Manrope}.orbit span{color:var(--red)}.card{position:relative;background:linear-gradient(145deg,#151518,#0d0d0f);border:1px solid #ffffff16;border-radius:20px;padding:27px;box-shadow:0 25px 90px #0007;min-width:0}.card:before{content:"";position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,#f12649,transparent)}.card h2{font:700 25px Manrope;margin:8px 0}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;background:#080809;padding:5px;border:1px solid var(--line);border-radius:12px;margin:20px 0}.tab{border:0;background:transparent;color:var(--muted)}.tab.active{background:#26262c;color:white}.app-layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px;padding:28px 0 60px}.sidebar{align-self:start;position:sticky;top:90px;display:grid;gap:9px}.navbtn{text-align:left;background:transparent;border-color:transparent;color:#b1b1bb}.navbtn.active,.navbtn:hover{background:#19191e;border-color:#303037;color:white}.content{min-width:0}.page-title{font:700 28px Manrope;margin:0 0 6px}.panel{padding:22px;border:1px solid var(--line);background:#101013;border-radius:16px;margin:18px 0}.row{display:flex;align-items:center;gap:12px}.between{display:flex;justify-content:space-between;align-items:center;gap:12px}.avatar{width:45px;height:45px;border-radius:50%;object-fit:cover;background:#251017;border:1px solid #f126494c;display:grid;place-items:center;flex-shrink:0;font-weight:800;color:#ff8198}.avatar.big{width:88px;height:88px;font-size:26px}.userline{min-width:0}.userline strong{display:block;overflow-wrap:anywhere}.userline small{color:var(--muted)}.listitem{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #ffffff0b}.listitem:last-child{border-bottom:0}.listitem .right{margin-left:auto}.post{padding:0;overflow:hidden}.post-head{padding:16px;display:flex;align-items:center;gap:10px}.post-body{padding:0 16px 16px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65}.post-img{display:block;width:100%;max-height:540px;object-fit:contain;background:#080809}.post-actions{display:flex;gap:8px;padding:0 16px 16px}.post-actions button{padding:8px 12px}.searchbar{display:flex;gap:8px}.searchbar input{margin:0;min-width:0}.chat-layout{display:grid;grid-template-columns:minmax(120px,.8fr) minmax(0,1.2fr);gap:14px}.chat-list{max-height:470px;overflow:auto}.chat-window{border:1px solid var(--line);border-radius:13px;overflow:hidden;min-width:0}.chat-head{padding:13px;border-bottom:1px solid var(--line)}.messages{height:330px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:9px}.bubble{max-width:85%;padding:10px 12px;border-radius:14px;background:#24242b;align-self:flex-start;overflow-wrap:anywhere;white-space:pre-wrap;font-size:13px;line-height:1.5}.bubble.mine{align-self:flex-end;background:#a81734}.sendrow{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}.sendrow input{margin:0;min-width:0}.sendrow button{flex-shrink:0}footer{padding:22px 5%;border-top:1px solid #ffffff10;color:#686872;font-size:10px;letter-spacing:1.2px;display:flex;justify-content:space-between;gap:10px}
-@media(max-width:760px){.auth-layout{grid-template-columns:1fr;gap:25px;padding:35px 0}.hero h1{font-size:48px}.orbit{display:none}.auth-layout .hero .intro{font-size:13px}.app-layout{grid-template-columns:1fr;gap:15px;padding-top:16px}.sidebar{position:static;display:flex;overflow-x:auto;gap:6px}.navbtn{white-space:nowrap;padding:10px 12px;font-size:12px}.card{padding:21px}.chat-layout{grid-template-columns:1fr}.chat-list{max-height:180px}.page-title{font-size:24px}footer{font-size:8px}}
-@media(prefers-reduced-motion:no-preference){.card,.hero{animation:appear .55s ease both}@keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080809">
+    <title>VEYRA — Your Space, Your People</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --bg: #080809;
+            --panel: #111114;
+            --panel2: #19191e;
+            --red: #f12649;
+            --white: #f7f7fa;
+            --muted: #92929d;
+            --line: #29292f;
+            --green: #7ce6ad;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: radial-gradient(ellipse at 5% 10%, #a20d211b, transparent 35%), var(--bg);
+            color: var(--white);
+            font-family: 'DM Sans', sans-serif;
+            min-height: 100vh;
+        }
+
+        button, input, textarea {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: 1px solid var(--line);
+            background: var(--panel2);
+            color: var(--white);
+            padding: 11px 14px;
+            border-radius: 10px;
+        }
+
+        button:disabled {
+            opacity: .55;
+            cursor: wait;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 2px;
+        }
+
+        .top {
+            height: 68px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #ffffff12;
+            background: #09090bed;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            backdrop-filter: blur(15px);
+        }
+
+        .logo {
+            font: 800 22px Manrope, sans-serif;
+            letter-spacing: 4px;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .live {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 1.5px;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 12px var(--red);
+            margin-right: 8px;
+        }
+
+        .primary {
+            background: linear-gradient(110deg, #f12649, #b70e2e);
+            border-color: #f12649;
+            font-weight: 700;
+        }
+
+        .danger {
+            color: #ff8499;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .small, .note {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .status {
+            font-size: 12px;
+            min-height: 18px;
+            margin: 8px 0;
+            color: var(--green);
+            overflow-wrap: anywhere;
+        }
+
+        .status.error {
+            color: #ff8499;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: #09090b;
+            color: white;
+            border: 1px solid #34343c;
+            border-radius: 10px;
+            padding: 13px;
+            margin: 7px 0 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 95px;
+        }
+
+        label {
+            font-size: 12px;
+            color: #d8d8df;
+            font-weight: 600;
+        }
+
+        .wrap {
+            width: min(1100px, 92%);
+            margin: auto;
+        }
+
+        .auth-layout {
+            min-height: calc(100vh - 130px);
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            align-items: center;
+            gap: 55px;
+            padding: 45px 0;
+        }
+
+        .hero h1 {
+            font: 800 clamp(44px, 6vw, 76px)/1.05 Manrope, sans-serif;
+            letter-spacing: -3px;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+        }
+
+        .kicker {
+            color: var(--red);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .intro {
+            color: #aaaab4;
+            line-height: 1.9;
+            max-width: 390px;
+        }
+
+        .orbit {
+            height: 140px;
+            width: 140px;
+            margin: 35px 0;
+            display: grid;
+            place-items: center;
+            border: 1px solid #f1264930;
+            border-radius: 50%;
+            box-shadow: 0 0 0 20px #f1264906, 0 0 0 40px #f1264903;
+            font: 800 82px Manrope;
+        }
+
+        .orbit span {
+            color: var(--red);
+        }
+
+        .card {
+            position: relative;
+            background: linear-gradient(145deg, #151518, #0d0d0f);
+            border: 1px solid #ffffff16;
+            border-radius: 20px;
+            padding: 27px;
+            box-shadow: 0 25px 90px #0007;
+            min-width: 0;
+        }
+
+        .card:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 15%;
+            right: 15%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #f12649, transparent);
+        }
+
+        .card h2 {
+            font: 700 25px Manrope;
+            margin: 8px 0;
+        }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+            background: #080809;
+            padding: 5px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .tab {
+            border: 0;
+            background: transparent;
+            color: var(--muted);
+        }
+
+        .tab.active {
+            background: #26262c;
+            color: white;
+        }
+
+        .app-layout {
+            display: grid;
+            grid-template-columns: 210px minmax(0, 1fr);
+            gap: 24px;
+            padding: 28px 0 60px;
+        }
+
+        .sidebar {
+            align-self: start;
+            position: sticky;
+            top: 90px;
+            display: grid;
+            gap: 9px;
+        }
+
+        .navbtn {
+            text-align: left;
+            background: transparent;
+            border-color: transparent;
+            color: #b1b1bb;
+        }
+
+        .navbtn.active, .navbtn:hover {
+            background: #19191e;
+            border-color: #303037;
+            color: white;
+        }
+
+        .content {
+            min-width: 0;
+        }
+
+        .page-title {
+            font: 700 28px Manrope;
+            margin: 0 0 6px;
+        }
+
+        .panel {
+            padding: 22px;
+            border: 1px solid var(--line);
+            background: #101013;
+            border-radius: 16px;
+            margin: 18px 0;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #251017;
+            border: 1px solid #f126494c;
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            font-weight: 800;
+            color: #ff8198;
+        }
+
+        .avatar.big {
+            width: 88px;
+            height: 88px;
+            font-size: 26px;
+        }
+
+        .userline {
+            min-width: 0;
+        }
+
+        .userline strong {
+            display: block;
+            overflow-wrap: anywhere;
+        }
+
+        .userline small {
+            color: var(--muted);
+        }
+
+        .listitem {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 0;
+            border-bottom: 1px solid #ffffff0b;
+        }
+
+        .listitem:last-child {
+            border-bottom: 0;
+        }
+
+        .listitem .right {
+            margin-left: auto;
+        }
+
+        .post {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .post-head {
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .post-body {
+            padding: 0 16px 16px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            line-height: 1.65;
+        }
+
+        .post-img {
+            display: block;
+            width: 100%;
+            max-height: 540px;
+            object-fit: contain;
+            background: #080809;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 8px;
+            padding: 0 16px 16px;
+        }
+
+        .post-actions button {
+            padding: 8px 12px;
+        }
+
+        .searchbar {
+            display: flex;
+            gap: 8px;
+        }
+
+        .searchbar input {
+            margin: 0;
+            min-width: 0;
+        }
+
+        .chat-layout {
+            display: grid;
+            grid-template-columns: minmax(120px, .8fr) minmax(0, 1.2fr);
+            gap: 14px;
+        }
+
+        .chat-list {
+            max-height: 470px;
+            overflow: auto;
+        }
+
+        .chat-window {
+            border: 1px solid var(--line);
+            border-radius: 13px;
+            overflow: hidden;
+            min-width: 0;
+        }
+
+        .chat-head {
+            padding: 13px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .messages {
+            height: 330px;
+            overflow: auto;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+        }
+
+        .bubble {
+            max-width: 85%;
+            padding: 10px 12px;
+            border-radius: 14px;
+            background: #24242b;
+            align-self: flex-start;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .bubble.mine {
+            align-self: flex-end;
+            background: #a81734;
+        }
+
+        .sendrow {
+            display: flex;
+            gap: 8px;
+            padding: 10px;
+            border-top: 1px solid var(--line);
+        }
+
+        .sendrow input {
+            margin: 0;
+            min-width: 0;
+        }
+
+        .sendrow button {
+            flex-shrink: 0;
+        }
+
+        footer {
+            padding: 22px 5%;
+            border-top: 1px solid #ffffff10;
+            color: #686872;
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        @media (max-width: 760px) {
+            .auth-layout {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 35px 0;
+            }
+            .hero h1 {
+                font-size: 48px;
+            }
+            .orbit {
+                display: none;
+            }
+            .auth-layout .hero .intro {
+                font-size: 13px;
+            }
+            .app-layout {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding-top: 16px;
+            }
+            .sidebar {
+                position: static;
+                display: flex;
+                overflow-x: auto;
+                gap: 6px;
+            }
+            .navbtn {
+                white-space: nowrap;
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+            .card {
+                padding: 21px;
+            }
+            .chat-layout {
+                grid-template-columns: 1fr;
+            }
+            .chat-list {
+                max-height: 180px;
+            }
+            .page-title {
+                font-size: 24px;
+            }
+            footer {
+                font-size: 8px;
+            }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .card, .hero {
+                animation: appear .55s ease both;
+            }
+            @keyframes appear {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        }
+
+        .upload-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+
+        .upload-preview {
+            display: block;
+            max-width: 100%;
+            max-height: 320px;
+            object-fit: contain;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            margin: 10px 0;
+            background: #080809;
+        }
+
+        .upload-preview.avatar-preview {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .upload-hint {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-<header class="top">
-  <a href="#" class="logo">VEYRA<span>.</span></a>
-  <div class="live"><span class="dot"></span>YOUR SPACE, YOUR PEOPLE</div>
-  <button id="logout" hidden>Sign out</button>
-</header>
+    <header class="top">
+        <a href="#" class="logo">VEYRA<span>.</span></a>
+        <div class="live"><span class="dot"></span>YOUR SPACE, YOUR PEOPLE</div>
+        <button id="logout" hidden>Sign out</button>
+    </header>
 
-<section id="auth-screen" class="wrap auth-layout">
-  <div class="hero">
-    <p class="kicker">A NEW WAY TO CONNECT</p>
-    <h1>Your people.<br>Your <span>space.</span></h1>
-    <p class="intro">Real connections, conversations and moments worth sharing. Your world, on your terms.</p>
-    <div class="orbit">V<span>.</span></div>
-    <p class="note">PRIVATE BY DESIGN · MADE FOR CONNECTION</p>
-  </div>
-  <div class="card">
-    <p class="kicker">WELCOME TO VEYRA</p>
-    <h2 id="auth-heading">Start your journey.</h2>
-    <p class="note" id="auth-sub">Sign in or create your own account.</p>
-    <div class="tabs">
-      <button class="tab active" id="login-tab">Sign in</button>
-      <button class="tab" id="signup-tab">Create account</button>
-    </div>
-    <form id="auth-form">
-      <div id="name-field" hidden>
-        <label for="display-name">Display name</label>
-        <input id="display-name" maxlength="35" placeholder="Your name">
-        <label for="username">Unique username</label>
-        <input id="username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" placeholder="yourname">
-        <p class="note">3–20 letters, numbers or underscores.</p>
-      </div>
-      <label for="email">Email address</label>
-      <input id="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-      <label for="password">Password</label>
-      <input id="password" type="password" minlength="6" autocomplete="current-password" placeholder="At least 6 characters" required>
-      <button class="primary" id="auth-submit" style="width:100%">Sign in ↗</button>
-    </form>
-    <button id="guest-btn" style="width:100%;margin-top:10px">Continue as guest →</button>
-    <p class="status" id="auth-status" role="status"></p>
-    <p class="note">Be respectful. Never share passwords or private information with strangers.</p>
-  </div>
-</section>
-
-<section id="app-screen" class="wrap app-layout" hidden>
-  <aside class="sidebar">
-    <button class="navbtn active" data-page="feed">⌂ &nbsp; Home feed</button>
-    <button class="navbtn" data-page="search">⌕ &nbsp; Find people</button>
-    <button class="navbtn" data-page="inbox">✉ &nbsp; Messages</button>
-    <button class="navbtn" data-page="profile">◉ &nbsp; My profile</button>
-  </aside>
-  <main class="content">
-    <section id="page-feed">
-      <div class="between">
-        <div><p class="kicker">YOUR WORLD</p><h1 class="page-title">Home feed</h1></div>
-        <button class="primary" id="jump-post">＋ Create post</button>
-      </div>
-      <div class="panel" id="create-post">
-        <h3 style="margin-top:0">Share a moment</h3>
-        <textarea id="post-text" maxlength="2000" placeholder="What's on your mind?"></textarea>
-        <label for="post-image-url">Photo URL (optional)</label>
-        <input id="post-image-url" type="url" placeholder="https://example.com/image.jpg">
-        <p class="note">Image upload from your phone needs Firebase Storage or another image host. For now, paste a direct image URL.</p>
-        <div class="between">
-          <span class="note">Keep it kind.</span>
-          <button class="primary" id="publish-btn">Publish ↗</button>
+    <section id="auth-screen" class="wrap auth-layout">
+        <div class="hero">
+            <p class="kicker">A NEW WAY TO CONNECT</p>
+            <h1>Your people.<br>Your <span>space.</span></h1>
+            <p class="intro">Real connections, conversations and moments worth sharing. Your world, on your terms.</p>
+            <div class="orbit">V<span>.</span></div>
+            <p class="note">PRIVATE BY DESIGN · MADE FOR CONNECTION</p>
         </div>
-        <p class="status" id="post-status"></p>
-      </div>
-      <div id="feed-list"><div class="panel note">Loading posts…</div></div>
+        
+        <div class="card">
+            <p class="kicker">WELCOME TO VEYRA</p>
+            <h2 id="auth-heading">Start your journey.</h2>
+            <p class="note" id="auth-sub">Sign in or create your own account.</p>
+            
+            <div class="tabs">
+                <button class="tab active" id="login-tab">Sign in</button>
+                <button class="tab" id="signup-tab">Create account</button>
+            </div>
+            
+            <form id="auth-form">
+                <div id="name-field" hidden>
+                    <label for="display-name">Display name</label>
+                    <input id="display-name" maxlength="35" placeholder="Your name">
+                    <label for="username">Unique username</label>
+                    <input id="username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" placeholder="yourname">
+                    <p class="note">3–20 letters, numbers or underscores.</p>
+                </div>
+                
+                <label for="email">Email address</label>
+                <input id="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                
+                <label for="password">Password</label>
+                <input id="password" type="password" minlength="6" autocomplete="current-password" placeholder="At least 6 characters" required>
+                
+                <button class="primary" id="auth-submit" style="width:100%">Sign in ↗</button>
+            </form>
+            
+            <button id="guest-btn" style="width:100%;margin-top:10px">Continue as guest →</button>
+            <p class="status" id="auth-status" role="status"></p>
+            <p class="note">Be respectful. Never share passwords or private information with strangers.</p>
+        </div>
     </section>
 
-    <section id="page-search" hidden>
-      <p class="kicker">MEET YOUR PEOPLE</p>
-      <h1 class="page-title">Find people</h1>
-      <p class="note">Enter an exact username to find their profile and start a conversation.</p>
-      <form id="search-form" class="searchbar">
-        <input id="search-input" placeholder="Search username e.g. sunny_09" maxlength="20" required>
-        <button class="primary">Search</button>
-      </form>
-      <div class="panel"><div id="search-results" class="note">Search for a username to begin.</div></div>
+    <section id="app-screen" class="wrap app-layout" hidden>
+        <aside class="sidebar">
+            <button class="navbtn active" data-page="feed">⌂ &nbsp; Home feed</button>
+            <button class="navbtn" data-page="search">⌕ &nbsp; Find people</button>
+            <button class="navbtn" data-page="inbox">✉ &nbsp; Messages</button>
+            <button class="navbtn" data-page="profile">◉ &nbsp; My profile</button>
+        </aside>
+        
+        <main class="content">
+            <section id="page-feed">
+                <div class="between">
+                    <div>
+                        <p class="kicker">YOUR WORLD</p>
+                        <h1 class="page-title">Home feed</h1>
+                    </div>
+                    <button class="primary" id="jump-post">＋ Create post</button>
+                </div>
+                
+                <div class="panel" id="create-post">
+                    <h3 style="margin-top:0">Share a moment</h3>
+                    <textarea id="post-text" maxlength="2000" placeholder="What's on your mind?"></textarea>
+                    <label>Photo (optional)</label>
+                    <div class="upload-row">
+                        <button type="button" id="post-photo-btn">＋ Add photo from gallery</button>
+                        <span class="upload-hint" id="post-upload-status">JPG, PNG or WEBP · max 5 MB</span>
+                    </div>
+                    <input id="post-image-url" type="hidden">
+                    <img id="post-image-preview" class="upload-preview" alt="Selected post photo preview" hidden>
+                    <button type="button" id="remove-post-photo" hidden>Remove photo</button>
+                    <div class="between">
+                        <span class="note">Keep it kind.</span>
+                        <button class="primary" id="publish-btn">Publish ↗</button>
+                    </div>
+                    <p class="status" id="post-status"></p>
+                </div>
+                
+                <div id="feed-list">
+                    <div class="panel note">Loading posts…</div>
+                </div>
+            </section>
+            
+            <section id="page-search" hidden>
+                <p class="kicker">MEET YOUR PEOPLE</p>
+                <h1 class="page-title">Find people</h1>
+                <p class="note">Enter an exact username to find their profile and start a conversation.</p>
+                
+                <form id="search-form" class="searchbar">
+                    <input id="search-input" placeholder="Search username e.g. sunny_09" maxlength="20" required>
+                    <button class="primary">Search</button>
+                </form>
+                
+                <div class="panel">
+                    <div id="search-results" class="note">Search for a username to begin.</div>
+                </div>
+            </section>
+            
+            <section id="page-inbox" hidden>
+                <p class="kicker">PRIVATE CONVERSATIONS</p>
+                <h1 class="page-title">Your inbox</h1>
+                
+                <div class="panel chat-layout">
+                    <div>
+                        <h3 style="margin-top:0">Chats</h3>
+                        <div id="chat-list" class="chat-list note">Loading inbox…</div>
+                    </div>
+                    
+                    <div class="chat-window">
+                        <div class="chat-head" id="chat-title">Choose a conversation</div>
+                        <div class="messages" id="messages">
+                            <p class="note">Search a username to start chatting.</p>
+                        </div>
+                        
+                        <form class="sendrow" id="send-form">
+                            <input id="message-input" maxlength="2000" placeholder="Write a message…" autocomplete="off" disabled>
+                            <button class="primary" id="send-btn" disabled>Send</button>
+                        </form>
+                    </div>
+                </div>
+                <p class="note">Messages are accessible to chat members through Firebase rules; they are not end-to-end encrypted.</p>
+            </section>
+            
+            <section id="page-profile" hidden>
+                <p class="kicker">YOUR SPACE</p>
+                <h1 class="page-title">My profile</h1>
+                
+                <div class="panel">
+                    <div class="row" style="align-items:center;margin-bottom:20px">
+                        <img id="my-avatar" class="avatar big" alt="Your profile picture">
+                        <div>
+                            <h2 id="my-display" style="margin:0 0 5px">Your profile</h2>
+                            <div class="muted" id="my-username">@username</div>
+                        </div>
+                    </div>
+                    
+                    <form id="profile-form">
+                        <label for="profile-name">Display name</label>
+                        <input id="profile-name" maxlength="35" required>
+                        
+                        <label for="profile-bio">Bio</label>
+                        <textarea id="profile-bio" maxlength="180" placeholder="A little about you…"></textarea>
+                        
+                        <label>Profile picture</label>
+                        <div class="upload-row">
+                            <button type="button" id="profile-photo-btn">＋ Choose profile photo</button>
+                            <span class="upload-hint" id="profile-upload-status">JPG, PNG or WEBP · max 5 MB</span>
+                        </div>
+                        
+                        <input id="profile-photo-url" type="hidden">
+                        <img id="profile-photo-preview" class="upload-preview avatar-preview" alt="Profile photo preview" hidden>
+                        <button type="button" id="remove-profile-photo" hidden>Remove photo</button>
+                        
+                        <button class="primary">Save profile</button>
+                    </form>
+                    <p class="status" id="profile-status"></p>
+                </div>
+            </section>
+        </main>
     </section>
 
-    <section id="page-inbox" hidden>
-      <p class="kicker">PRIVATE CONVERSATIONS</p>
-      <h1 class="page-title">Your inbox</h1>
-      <div class="panel chat-layout">
-        <div>
-          <h3 style="margin-top:0">Chats</h3>
-          <div id="chat-list" class="chat-list note">Loading inbox…</div>
-        </div>
-        <div class="chat-window">
-          <div class="chat-head" id="chat-title">Choose a conversation</div>
-          <div class="messages" id="messages"><p class="note">Search a username to start chatting.</p></div>
-          <form class="sendrow" id="send-form">
-            <input id="message-input" maxlength="2000" placeholder="Write a message…" autocomplete="off" disabled>
-            <button class="primary" id="send-btn" disabled>Send</button>
-          </form>
-        </div>
-      </div>
-      <p class="note">Messages are accessible to chat members through Firebase rules; they are not end-to-end encrypted.</p>
-    </section>
+    <footer>
+        <strong>VEYRA<span style="color:#f12649">.</span></strong>
+        <span>CONNECT PRIVATELY.</span>
+        <span>© 2026 VEYRA</span>
+    </footer>
 
-    <section id="page-profile" hidden>
-      <p class="kicker">YOUR SPACE</p>
-      <h1 class="page-title">My profile</h1>
-      <div class="panel">
-        <div class="row" style="align-items:center;margin-bottom:20px">
-          <img id="my-avatar" class="avatar big" alt="Your profile picture">
-          <div>
-            <h2 id="my-display" style="margin:0 0 5px">Your profile</h2>
-            <div class="muted" id="my-username">@username</div>
-          </div>
-        </div>
-        <form id="profile-form">
-          <label for="profile-name">Display name</label>
-          <input id="profile-name" maxlength="35" required>
-          <label for="profile-bio">Bio</label>
-          <textarea id="profile-bio" maxlength="180" placeholder="A little about you…"></textarea>
-          <label for="profile-photo-url">Profile picture URL</label>
-          <input id="profile-photo-url" type="url" placeholder="https://example.com/avatar.jpg">
-          <p class="note">Paste a direct image URL for now. File uploads require Storage to be enabled.</p>
-          <button class="primary">Save profile</button>
-        </form>
-        <p class="status" id="profile-status"></p>
-      </div>
-    </section>
-  </main>
-</section>
+    <script src="https://upload-widget.cloudinary.com/latest/global/all.js" type="text/javascript"></script>
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInAnonymously, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, deleteDoc, collection, addDoc, query, where, orderBy, limit, onSnapshot, serverTimestamp, runTransaction } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
 
-<footer>
-  <strong>VEYRA<span style="color:#f12649">.</span></strong>
-  <span>CONNECT PRIVATELY.</span>
-  <span>© 2026 VEYRA</span>
-</footer>
+        const firebaseConfig = {
+            apiKey: 'AIzaSyCLCyL9aHA75fOOSKzn-BvBE4KGeJ9gl6k',
+            authDomain: 'veyra-ec444.firebaseapp.com',
+            projectId: 'veyra-ec444',
+            storageBucket: 'veyra-ec444.firebasestorage.app',
+            messagingSenderId: '379323509837',
+            appId: '1:379323509837:web:02275c08cfa206c8ec0004'
+        };
 
-<script type="module">
-import {initializeApp} from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js';
-import {getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,signInAnonymously,onAuthStateChanged,signOut} from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js';
-import {getFirestore,doc,getDoc,setDoc,updateDoc,deleteDoc,collection,addDoc,query,where,orderBy,limit,onSnapshot,serverTimestamp,runTransaction} from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js';
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-const firebaseConfig = {apiKey:'AIzaSyCLCyL9aHA75fOOSKzn-BvBE4KGeJ9gl6k',authDomain:'veyra-ec444.firebaseapp.com',projectId:'veyra-ec444',storageBucket:'veyra-ec444.firebasestorage.app',messagingSenderId:'379323509837',appId:'1:379323509837:web:02275c08cfa206c8ec0004'};
-const app = initializeApp(firebaseConfig), auth = getAuth(app), db = getFirestore(app);
-const $ = id => document.getElementById(id);
-let user = null, me = null, mode = 'login', activeChat = null, activePeer = null, stopFeed = null, stopChats = null, stopMessages = null;
+        const $ = id => document.getElementById(id);
+        let user = null, me = null, mode = 'login', activeChat = null, activePeer = null, stopFeed = null, stopChats = null, stopMessages = null;
 
-const clean = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const avatarText = n => (n || 'V').trim().charAt(0).toUpperCase() || 'V';
-function status(id, msg, error = false) { $(id).textContent = msg; $(id).className = 'status' + (error ? ' error' : ''); }
-function avatarHTML(url, name) { return url ? `<img class="avatar" src="${clean(url)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<div class="avatar">${clean(avatarText(name))}</div>`; }
+        const clean = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const avatarText = n => (n || 'V').trim().charAt(0).toUpperCase() || 'V';
 
-function showPage(page) {
-  document.querySelectorAll('.content>section').forEach(s => s.hidden = s.id !== 'page-' + page);
-  document.querySelectorAll('.navbtn').forEach(b => b.classList.toggle('active', b.dataset.page === page));
-  if (page === 'inbox') startChats();
-  if (page === 'feed') startFeed();
-}
-document.querySelectorAll('.navbtn').forEach(b => b.addEventListener('click', () => showPage(b.dataset.page)));
-$('jump-post').onclick = () => $('post-text').focus();
+        function status(id, msg, error = false) {
+            $(id).textContent = msg;
+            $(id).className = 'status' + (error ? ' error' : '');
+        }
 
-function setMode(next) {
-  mode = next;
-  const signup = mode === 'signup';
-  $('login-tab').classList.toggle('active', !signup);
-  $('signup-tab').classList.toggle('active', signup);
-  $('name-field').hidden = !signup;
-  $('username').required = signup;
-  $('display-name').required = signup;
-  $('auth-heading').textContent = signup ? 'Create your account.' : 'Start your journey.';
-  $('auth-sub').textContent = signup ? 'Choose a username people can find.' : 'Sign in and reconnect with your people.';
-  $('auth-submit').textContent = signup ? 'Create account ↗' : 'Sign in ↗';
-  status('auth-status', '');
-}
-$('login-tab').onclick = () => setMode('login');
-$('signup-tab').onclick = () => setMode('signup');
+        function avatarHTML(url, name) {
+            return url ? `<img class="avatar" src="${clean(url)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : `<div class="avatar">${clean(avatarText(name))}</div>`;
+        }
 
-function friendlyError(e) {
-  const m = {
-    'auth/email-already-in-use': 'This email already has an account. Please sign in.',
-    'auth/invalid-credential': 'Email or password is incorrect.',
-    'auth/weak-password': 'Choose a password with at least 6 characters.',
-    'auth/invalid-email': 'Please enter a valid email address.',
-    'auth/operation-not-allowed': 'Enable this sign-in method in Firebase Authentication.',
-    'auth/unauthorized-domain': 'Add your website domain to Firebase Authentication → Settings → Authorized domains.',
-    'permission-denied': 'Firestore rules blocked this action. Check the rules section below the code.',
-    'auth/network-request-failed': 'Network error. Check your internet connection.'
-  };
-  return m[e.code] || e.message || 'Something went wrong. Try again.';
-}
+        let uploadTarget = 'post';
+        let cloudinaryWidget = null;
 
-$('auth-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const email = $('email').value.trim(), password = $('password').value;
-  $('auth-submit').disabled = true;
-  status('auth-status', 'Please wait…');
-  try {
-    if (mode === 'login') {
-      await signInWithEmailAndPassword(auth, email, password);
-    } else {
-      const displayName = $('display-name').value.trim(), username = $('username').value.trim().toLowerCase();
-      if (!/^[a-z0-9_]{3,20}$/.test(username)) throw Error('Username must be 3–20 letters, numbers or underscores.');
-      const cred = await createUserWithEmailAndPassword(auth, email, password);
-      try {
-        await runTransaction(db, async tx => {
-          const nr = doc(db, 'usernames', username), old = await tx.get(nr);
-          if (old.exists()) throw Error('That username is taken. Choose another one.');
-          tx.set(nr, { uid: cred.user.uid });
-          tx.set(doc(db, 'users', cred.user.uid), { uid: cred.user.uid, username, displayName: displayName || username, bio: '', photoURL: '', isGuest: false, createdAt: serverTimestamp() });
+        function setPreview(target, url) {
+            if (target === 'post') {
+                const img = $('post-image-preview');
+                img.src = url;
+                img.hidden = !url;
+                $('remove-post-photo').hidden = !url;
+                $('post-image-url').value = url || '';
+                $('post-upload-status').textContent = url ? 'Photo ready to publish.' : 'JPG, PNG or WEBP · max 5 MB';
+            } else {
+                const img = $('profile-photo-preview');
+                img.src = url;
+                img.hidden = !url;
+                $('remove-profile-photo').hidden = !url;
+                $('profile-photo-url').value = url || '';
+                $('profile-upload-status').textContent = url ? 'Photo ready to save.' : 'JPG, PNG or WEBP · max 5 MB';
+                $('my-avatar').src = url || '';
+                $('my-avatar').style.visibility = url ? 'visible' : 'hidden';
+            }
+        }
+
+        function openPhotoUpload(target) {
+            if (!window.cloudinary) {
+                status(target === 'post' ? 'post-status' : 'profile-status', 'Photo uploader is still loading. Please try again.', true);
+                return;
+            }
+            uploadTarget = target;
+            if (!cloudinaryWidget) {
+                cloudinaryWidget = window.cloudinary.createUploadWidget({
+                    cloudName: 'jfjsg6rj',
+                    uploadPreset: 'Veyraa',
+                    sources: ['local'],
+                    multiple: false,
+                    maxFiles: 1,
+                    resourceType: 'image',
+                    clientAllowedFormats: ['jpg', 'jpeg', 'png', 'webp'],
+                    maxFileSize: 5000000,
+                    showAdvancedOptions: false,
+                    showUploadMoreButton: false,
+                    folder: 'veyra'
+                }, (error, result) => {
+                    if (error) {
+                        console.error('Cloudinary upload:', error);
+                        const id = uploadTarget === 'post' ? 'post-upload-status' : 'profile-upload-status';
+                        $(id).textContent = 'Upload failed. Check the Cloudinary preset and try again.';
+                        return;
+                    }
+                    if (result && result.event === 'success' && result.info && result.info.secure_url) {
+                        setPreview(uploadTarget, result.info.secure_url);
+                    }
+                });
+            }
+            cloudinaryWidget.open();
+        }
+
+        $('post-photo-btn').onclick = () => openPhotoUpload('post');
+        $('profile-photo-btn').onclick = () => openPhotoUpload('profile');
+        $('remove-post-photo').onclick = () => setPreview('post', '');
+        $('remove-profile-photo').onclick = () => setPreview('profile', '');
+
+        function showPage(page) {
+            document.querySelectorAll('.content>section').forEach(s => s.hidden = s.id !== 'page-' + page);
+            document.querySelectorAll('.navbtn').forEach(b => b.classList.toggle('active', b.dataset.page === page));
+            if (page === 'inbox') startChats();
+            if (page === 'feed') startFeed();
+        }
+
+        document.querySelectorAll('.navbtn').forEach(b => b.addEventListener('click', () => showPage(b.dataset.page)));
+        $('jump-post').onclick = () => $('post-text').focus();
+
+        function setMode(next) {
+            mode = next;
+            const signup = mode === 'signup';
+            $('login-tab').classList.toggle('active', !signup);
+            $('signup-tab').classList.toggle('active', signup);
+            $('name-field').hidden = !signup;
+            $('username').required = signup;
+            $('display-name').required = signup;
+            $('auth-heading').textContent = signup ? 'Create your account.' : 'Start your journey.';
+            $('auth-sub').textContent = signup ? 'Choose a username people can find.' : 'Sign in and reconnect with your people.';
+            $('auth-submit').textContent = signup ? 'Create account ↗' : 'Sign in ↗';
+            status('auth-status', '');
+        }
+
+        $('login-tab').onclick = () => setMode('login');
+        $('signup-tab').onclick = () => setMode('signup');
+
+        function friendlyError(e) {
+            const m = {
+                'auth/email-already-in-use': 'This email already has an account. Please sign in.',
+                'auth/invalid-credential': 'Email or password is incorrect.',
+                'auth/weak-password': 'Choose a password with at least 6 characters.',
+                'auth/invalid-email': 'Please enter a valid email address.',
+                'auth/operation-not-allowed': 'Enable this sign-in method in Firebase Authentication.',
+                'auth/unauthorized-domain': 'Add your website domain to Firebase Authentication → Settings → Authorized domains.',
+                'permission-denied': 'Firestore rules blocked this action. Check the rules section below the code.',
+                'auth/network-request-failed': 'Network error. Check your internet connection.'
+            };
+            return m[e.code] || e.message || 'Something went wrong. Try again.';
+        }
+
+        $('auth-form').addEventListener('submit', async e => {
+            e.preventDefault();
+            const email = $('email').value.trim(), password = $('password').value;
+            $('auth-submit').disabled = true;
+            status('auth-status', 'Please wait…');
+            try {
+                if (mode === 'login') {
+                    await signInWithEmailAndPassword(auth, email, password);
+                } else {
+                    const displayName = $('display-name').value.trim(), username = $('username').value.trim().toLowerCase();
+                    if (!/^[a-z0-9_]{3,20}$/.test(username)) throw Error('Username must be 3–20 letters, numbers or underscores.');
+                    const cred = await createUserWithEmailAndPassword(auth, email, password);
+                    try {
+                        await runTransaction(db, async tx => {
+                            const nr = doc(db, 'usernames', username), old = await tx.get(nr);
+                            if (old.exists()) throw Error('That username is taken. Choose another one.');
+                            tx.set(nr, { uid: cred.user.uid });
+                            tx.set(doc(db, 'users', cred.user.uid), {
+                                uid: cred.user.uid,
+                                username,
+                                displayName: displayName || username,
+                                bio: '',
+                                photoURL: '',
+                                isGuest: false,
+                                createdAt: serverTimestamp()
+                            });
+                        });
+                    } catch (err) {
+                        await signOut(auth);
+                        throw err;
+                    }
+                }
+            } catch (err) {
+                status('auth-status', friendlyError(err), true);
+            } finally {
+                $('auth-submit').disabled = false;
+            }
         });
-      } catch (err) {
-        await signOut(auth);
-        throw err;
-      }
-    }
-  } catch (err) {
-    status('auth-status', friendlyError(err), true);
-  } finally {
-    $('auth-submit').disabled = false;
-  }
-});
 
-$('guest-btn').onclick = async () => {
-  $('guest-btn').disabled = true;
-  try {
-    await signInAnonymously(auth);
-  } catch (e) {
-    status('auth-status', friendlyError(e), true);
-  } finally {
-    $('guest-btn').disabled = false;
-  }
-};
-
-onAuthStateChanged(auth, async current => {
-  user = current;
-  if (stopFeed) stopFeed();
-  if (stopChats) stopChats();
-  if (stopMessages) stopMessages();
-  stopFeed = stopChats = stopMessages = null;
-  activeChat = null; activePeer = null; me = null;
-  $('auth-screen').hidden = !!user;
-  $('app-screen').hidden = !user;
-  $('logout').hidden = !user;
-  if (!user) return;
-  try {
-    const ur = doc(db, 'users', user.uid);
-    let snap = await getDoc(ur);
-    if (!snap.exists()) {
-      const username = (user.isAnonymous ? 'guest_' : 'member_') + user.uid.slice(0, 10).toLowerCase();
-      await runTransaction(db, async tx => {
-        const nr = doc(db, 'usernames', username), old = await tx.get(nr);
-        if (!old.exists()) tx.set(nr, { uid: user.uid });
-        tx.set(ur, { uid: user.uid, username, displayName: user.isAnonymous ? 'Guest' : username, bio: '', photoURL: '', isGuest: user.isAnonymous, createdAt: serverTimestamp() });
-      });
-      snap = await getDoc(ur);
-    }
-    me = snap.data();
-    $('my-display').textContent = me.displayName || me.username;
-    $('my-username').textContent = '@' + me.username;
-    $('profile-name').value = me.displayName || '';
-    $('profile-bio').value = me.bio || '';
-    $('profile-photo-url').value = me.photoURL || '';
-    if (me.photoURL) {
-      $('my-avatar').src = me.photoURL;
-      $('my-avatar').style.visibility = 'visible';
-    } else {
-      $('my-avatar').removeAttribute('src');
-      $('my-avatar').style.visibility = 'hidden';
-    }
-    showPage('feed');
-    startFeed();
-    startChats();
-  } catch (e) {
-    console.error(e);
-    alert('Could not load your VEYRA profile: ' + friendlyError(e));
-  }
-});
-
-$('logout').onclick = async () => {
-  if (user?.isAnonymous && !confirm('Guest accounts may not be recoverable after signing out. Sign out anyway?')) return;
-  await signOut(auth);
-};
-
-function startFeed() {
-  if (stopFeed) stopFeed();
-  const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(40));
-  stopFeed = onSnapshot(q, snap => {
-    const host = $('feed-list');
-    if (snap.empty) {
-      host.innerHTML = '<div class="panel note">No posts yet. Be the first to share a moment.</div>';
-      return;
-    }
-    host.innerHTML = '';
-    snap.forEach(s => {
-      const p = s.data(), id = s.id, el = document.createElement('article');
-      el.className = 'panel post';
-      el.innerHTML = `
-        <div class="post-head">${avatarHTML(p.photoURL, p.displayName)}<div class="userline"><strong>${clean(p.displayName || p.username || 'Member')}</strong><small>@${clean(p.username || 'member')}</small></div><small class="muted" style="margin-left:auto">VEYRA</small></div>
-        ${p.imageURL ? `<img class="post-img" src="${clean(p.imageURL)}" alt="Post image" loading="lazy" referrerpolicy="no-referrer">` : ''}
-        ${p.text ? `<div class="post-body">${clean(p.text)}</div>` : ''}
-        <div class="post-actions"><button class="like-btn">♡ Like</button><button class="msg-author">Message</button></div>
-        <div class="post-body note" data-likes>Loading likes…</div>
-      `;
-      el.querySelector('.msg-author').onclick = () => startChatWith(p.uid);
-      const likesRef = collection(db, 'posts', id, 'likes');
-      onSnapshot(likesRef, likes => {
-        const mine = likes.docs.some(d => d.id === user.uid);
-        el.querySelector('[data-likes]').textContent = `♥ ${likes.size} likes`;
-        const btn = el.querySelector('.like-btn');
-        btn.textContent = mine ? '♥ Liked' : '♡ Like';
-        btn.onclick = async () => {
-          btn.disabled = true;
-          try {
-            const lr = doc(db, 'posts', id, 'likes', user.uid);
-            if (mine) await deleteDoc(lr);
-            else await setDoc(lr, { uid: user.uid, createdAt: serverTimestamp() });
-          } catch (e) { alert(friendlyError(e)); }
-          finally { btn.disabled = false; }
+        $('guest-btn').onclick = async () => {
+            $('guest-btn').disabled = true;
+            try {
+                await signInAnonymously(auth);
+            } catch (e) {
+                status('auth-status', friendlyError(e), true);
+            } finally {
+                $('guest-btn').disabled = false;
+            }
         };
-      }, e => console.warn('Likes:', e));
-      host.appendChild(el);
-    });
-  }, e => status('post-status', friendlyError(e), true));
-}
 
-$('publish-btn').onclick = async () => {
-  if (!user) return;
-  const text = $('post-text').value.trim(), imageURL = $('post-image-url').value.trim();
-  if (!text && !imageURL) {
-    status('post-status', 'Write something or add a photo URL.', true);
-    return;
-  }
-  if (imageURL && !/^https:\/\//i.test(imageURL)) {
-    status('post-status', 'Please use a direct HTTPS image URL.', true);
-    return;
-  }
-  const btn = $('publish-btn');
-  btn.disabled = true;
-  status('post-status', 'Publishing…');
-  try {
-    await addDoc(collection(db, 'posts'), {
-      uid: user.uid,
-      username: me.username,
-      displayName: me.displayName || me.username,
-      photoURL: me.photoURL || '',
-      text,
-      imageURL,
-      createdAt: serverTimestamp()
-    });
-    $('post-text').value = '';
-    $('post-image-url').value = '';
-    status('post-status', 'Posted successfully.');
-  } catch (e) {
-    status('post-status', friendlyError(e), true);
-  } finally {
-    btn.disabled = false;
-  }
-};
+        onAuthStateChanged(auth, async current => {
+            user = current;
+            if (stopFeed) stopFeed();
+            if (stopChats) stopChats();
+            if (stopMessages) stopMessages();
+            stopFeed = stopChats = stopMessages = null;
+            activeChat = null;
+            activePeer = null;
+            me = null;
+            $('auth-screen').hidden = !!user;
+            $('app-screen').hidden = !user;
+            $('logout').hidden = !user;
+            if (!user) return;
+            try {
+                const ur = doc(db, 'users', user.uid);
+                let snap = await getDoc(ur);
+                if (!snap.exists()) {
+                    const username = (user.isAnonymous ? 'guest_' : 'member_') + user.uid.slice(0, 10).toLowerCase();
+                    await runTransaction(db, async tx => {
+                        const nr = doc(db, 'usernames', username), old = await tx.get(nr);
+                        if (!old.exists()) tx.set(nr, { uid: user.uid });
+                        tx.set(ur, {
+                            uid: user.uid,
+                            username,
+                            displayName: user.isAnonymous ? 'Guest' : username,
+                            bio: '',
+                            photoURL: '',
+                            isGuest: user.isAnonymous,
+                            createdAt: serverTimestamp()
+                        });
+                    });
+                    snap = await getDoc(ur);
+                }
+                me = snap.data();
+                $('my-display').textContent = me.displayName || me.username;
+                $('my-username').textContent = '@' + me.username;
+                $('profile-name').value = me.displayName || '';
+                $('profile-bio').value = me.bio || '';
+                $('profile-photo-url').value = me.photoURL || '';
+                if (me.photoURL) {
+                    setPreview('profile', me.photoURL);
+                    $('my-avatar').src = me.photoURL;
+                    $('my-avatar').style.visibility = 'visible';
+                } else {
+                    setPreview('profile', '');
+                    $('my-avatar').removeAttribute('src');
+                    $('my-avatar').style.visibility = 'hidden';
+                }
+                showPage('feed');
+                startFeed();
+                startChats();
+            } catch (e) {
+                console.error(e);
+                alert('Could not load your VEYRA profile: ' + friendlyError(e));
+            }
+        });
 
-$('search-form').onsubmit = async e => {
-  e.preventDefault();
-  const username = $('search-input').value.trim().toLowerCase(), host = $('search-results');
-  host.textContent = 'Searching…';
-  if (!/^[a-z0-9_]{3,20}$/.test(username)) {
-    host.textContent = 'Enter a valid username.';
-    return;
-  }
-  try {
-    const ns = await getDoc(doc(db, 'usernames', username));
-    if (!ns.exists()) {
-      host.textContent = 'No account found with that username.';
-      return;
-    }
-    const ps = await getDoc(doc(db, 'users', ns.data().uid));
-    if (!ps.exists()) {
-      host.textContent = 'This profile is unavailable.';
-      return;
-    }
-    const p = ps.data();
-    host.innerHTML = '';
-    const row = document.createElement('div');
-    row.className = 'listitem';
-    row.innerHTML = `${avatarHTML(p.photoURL, p.displayName)}<div class="userline"><strong>${clean(p.displayName || p.username)}</strong><small>@${clean(p.username)}</small><div class="note">${clean(p.bio || '')}</div></div>`;
-    const btn = document.createElement('button');
-    btn.className = 'primary right';
-    btn.textContent = p.uid === user.uid ? 'Your profile' : 'Message';
-    btn.disabled = p.uid === user.uid;
-    btn.onclick = () => startChatWith(p.uid);
-    row.appendChild(btn);
-    host.appendChild(row);
-  } catch (err) {
-    host.textContent = friendlyError(err);
-  }
-};
-
-function chatIdFor(a, b) { return [a, b].sort().join('__'); }
-
-async function startChatWith(peerUid) {
-  if (!peerUid || peerUid === user.uid) {
-    alert('Choose another user to start a chat.');
-    return;
-  }
-  try {
-    const ps = await getDoc(doc(db, 'users', peerUid));
-    if (!ps.exists()) throw Error('This user is unavailable.');
-    const peer = ps.data(), id = chatIdFor(user.uid, peerUid), cr = doc(db, 'chats', id), ex = await getDoc(cr);
-    if (!ex.exists()) await setDoc(cr, { members: [user.uid, peerUid].sort(), createdAt: serverTimestamp(), lastMessage: '', lastMessageAt: serverTimestamp() });
-    activeChat = id;
-    activePeer = peer;
-    $('chat-title').textContent = '@' + peer.username;
-    $('message-input').disabled = false;
-    $('send-btn').disabled = false;
-    showPage('inbox');
-    startMessages(id);
-    startChats();
-  } catch (e) {
-    alert(friendlyError(e));
-  }
-}
-
-function startChats() {
-  if (!user) return;
-  if (stopChats) stopChats();
-  const q = query(collection(db, 'chats'), where('members', 'array-contains', user.uid), orderBy('lastMessageAt', 'desc'), limit(50));
-  stopChats = onSnapshot(q, snap => {
-    const host = $('chat-list');
-    host.innerHTML = '';
-    if (snap.empty) {
-      host.textContent = 'No chats yet. Search for someone to start a conversation.';
-      return;
-    }
-    snap.forEach(s => {
-      const c = s.data(), peerUid = (c.members || []).find(x => x !== user.uid);
-      if (!peerUid) return;
-      getDoc(doc(db, 'users', peerUid)).then(ps => {
-        if (!ps.exists()) return;
-        const p = ps.data(), b = document.createElement('button');
-        b.style.cssText = 'display:block;width:100%;text-align:left;margin:5px 0';
-        b.innerHTML = `<strong>@${clean(p.username)}</strong><br><span class="note">${clean((c.lastMessage || 'Start a conversation').slice(0, 55))}</span>`;
-        b.onclick = () => {
-          activeChat = s.id;
-          activePeer = p;
-          $('chat-title').textContent = '@' + p.username;
-          $('message-input').disabled = false;
-          $('send-btn').disabled = false;
-          startMessages(s.id);
+        $('logout').onclick = async () => {
+            if (user?.isAnonymous && !confirm('Guest accounts may not be recoverable after signing out. Sign out anyway?')) return;
+            await signOut(auth);
         };
-        host.appendChild(b);
-      }).catch(console.error);
-    });
-  }, e => {
-    console.error('Inbox:', e);
-    $('chat-list').textContent = friendlyError(e);
-  });
-}
 
-function startMessages(id) {
-  if (stopMessages) stopMessages();
-  const q = query(collection(db, 'chats', id, 'messages'), orderBy('createdAt', 'asc'), limit(150));
-  stopMessages = onSnapshot(q, snap => {
-    const host = $('messages');
-    host.innerHTML = '';
-    snap.forEach(s => {
-      const m = s.data(), b = document.createElement('div');
-      b.className = 'bubble' + (m.senderId === user.uid ? ' mine' : '');
-      b.textContent = m.text || '';
-      host.appendChild(b);
-    });
-    host.scrollTop = host.scrollHeight;
-  }, e => { $('messages').textContent = friendlyError(e); });
-}
+        function startFeed() {
+            if (stopFeed) stopFeed();
+            const q = query(collection(db, 'posts'), orderBy('createdAt', 'desc'), limit(40));
+            stopFeed = onSnapshot(q, snap => {
+                const host = $('feed-list');
+                if (snap.empty) {
+                    host.innerHTML = '<div class="panel note">No posts yet. Be the first to share a moment.</div>';
+                    return;
+                }
+                host.innerHTML = '';
+                snap.forEach(s => {
+                    const p = s.data(), id = s.id, el = document.createElement('article');
+                    el.className = 'panel post';
+                    el.innerHTML = `
+                        <div class="post-head">
+                            ${avatarHTML(p.photoURL, p.displayName)}
+                            <div class="userline">
+                                <strong>${clean(p.displayName || p.username || 'Member')}</strong>
+                                <small>@${clean(p.username || 'member')}</small>
+                            </div>
+                            <small class="muted" style="margin-left:auto">VEYRA</small>
+                        </div>
+                        ${p.imageURL ? `<img class="post-img" src="${clean(p.imageURL)}" alt="Post image" loading="lazy" referrerpolicy="no-referrer">` : ''}
+                        ${p.text ? `<div class="post-body">${clean(p.text)}</div>` : ''}
+                        <div class="post-actions">
+                            <button class="like-btn">♡ Like</button>
+                            <button class="msg-author">Message</button>
+                        </div>
+                        <div class="post-body note" data-likes>Loading likes…</div>
+                    `;
+                    el.querySelector('.msg-author').onclick = () => startChatWith(p.uid);
+                    const likesRef = collection(db, 'posts', id, 'likes');
+                    onSnapshot(likesRef, likes => {
+                        const mine = likes.docs.some(d => d.id === user.uid);
+                        el.querySelector('[data-likes]').textContent = `♥ ${likes.size} likes`;
+                        const btn = el.querySelector('.like-btn');
+                        btn.textContent = mine ? '♥ Liked' : '♡ Like';
+                        btn.onclick = async () => {
+                            btn.disabled = true;
+                            try {
+                                const lr = doc(db, 'posts', id, 'likes', user.uid);
+                                if (mine) await deleteDoc(lr);
+                                else await setDoc(lr, { uid: user.uid, createdAt: serverTimestamp() });
+                            } catch (e) {
+                                alert(friendlyError(e));
+                            } finally {
+                                btn.disabled = false;
+                            }
+                        };
+                    }, e => console.warn('Likes:', e));
+                    host.appendChild(el);
+                });
+            }, e => status('post-status', friendlyError(e), true));
+        }
 
-$('send-form').onsubmit = async e => {
-  e.preventDefault();
-  const text = $('message-input').value.trim();
-  if (!text || !activeChat || !activePeer) return;
-  const btn = $('send-btn');
-  btn.disabled = true;
-  try {
-    const cr = doc(db, 'chats', activeChat);
-    await addDoc(collection(db, 'chats', activeChat, 'messages'), { senderId: user.uid, text, createdAt: serverTimestamp() });
-    await updateDoc(cr, { lastMessage: text, lastMessageAt: serverTimestamp() });
-    $('message-input').value = '';
-  } catch (e) {
-    alert(friendlyError(e));
-  } finally {
-    btn.disabled = false;
-  }
-};
+        $('publish-btn').onclick = async () => {
+            if (!user) return;
+            const text = $('post-text').value.trim(), imageURL = $('post-image-url').value.trim();
+            if (!text && !imageURL) {
+                status('post-status', 'Write something or add a photo.', true);
+                return;
+            }
+            if (imageURL && !/^https:\/\//i.test(imageURL)) {
+                status('post-status', 'The selected photo URL is invalid. Please upload it again.', true);
+                return;
+            }
+            const btn = $('publish-btn');
+            btn.disabled = true;
+            status('post-status', 'Publishing…');
+            try {
+                await addDoc(collection(db, 'posts'), {
+                    uid: user.uid,
+                    username: me.username,
+                    displayName: me.displayName || me.username,
+                    photoURL: me.photoURL || '',
+                    text,
+                    imageURL,
+                    createdAt: serverTimestamp()
+                });
+                $('post-text').value = '';
+                setPreview('post', '');
+                status('post-status', 'Posted successfully.');
+            } catch (e) {
+                status('post-status', friendlyError(e), true);
+            } finally {
+                btn.disabled = false;
+            }
+        };
 
-$('profile-form').onsubmit = async e => {
-  e.preventDefault();
-  const btn = e.submitter;
-  btn.disabled = true;
-  status('profile-status', 'Saving…');
-  try {
-    const displayName = $('profile-name').value.trim(), bio = $('profile-bio').value.trim(), photoURL = $('profile-photo-url').value.trim();
-    if (!displayName) throw Error('Display name is required.');
-    if (photoURL && !/^https:\/\//i.test(photoURL)) throw Error('Profile picture must be an HTTPS URL.');
-    await updateDoc(doc(db, 'users', user.uid), { displayName, bio, photoURL });
-    me = { ...me, displayName, bio, photoURL };
-    $('my-display').textContent = displayName;
-    if (photoURL) {
-      $('my-avatar').src = photoURL;
-      $('my-avatar').style.visibility = 'visible';
-    } else {
-      $('my-avatar').removeAttribute('src');
-      $('my-avatar').style.visibility = 'hidden';
-    }
-    status('profile-status', 'Profile saved.');
-  } catch (e) {
-    status('profile-status', friendlyError(e), true);
-  } finally {
-    btn.disabled = false;
-  }
-};
-</script>
+        $('search-form').onsubmit = async e => {
+            e.preventDefault();
+            const username = $('search-input').value.trim().toLowerCase(), host = $('search-results');
+            host.textContent = 'Searching…';
+            if (!/^[a-z0-9_]{3,20}$/.test(username)) {
+                host.textContent = 'Enter a valid username.';
+                return;
+            }
+            try {
+                const ns = await getDoc(doc(db, 'usernames', username));
+                if (!ns.exists()) {
+                    host.textContent = 'No account found with that username.';
+                    return;
+                }
+                const ps = await getDoc(doc(db, 'users', ns.data().uid));
+                if (!ps.exists()) {
+                    host.textContent = 'This profile is unavailable.';
+                    return;
+                }
+                const p = ps.data();
+                host.innerHTML = '';
+                const row = document.createElement('div');
+                row.className = 'listitem';
+                row.innerHTML = `
+                    ${avatarHTML(p.photoURL, p.displayName)}
+                    <div class="userline">
+                        <strong>${clean(p.displayName || p.username)}</strong>
+                        <small>@${clean(p.username)}</small>
+                        <div class="note">${clean(p.bio || '')}</div>
+                    </div>
+                `;
+                const btn = document.createElement('button');
+                btn.className = 'primary right';
+                btn.textContent = p.uid === user.uid ? 'Your profile' : 'Message';
+                btn.disabled = p.uid === user.uid;
+                btn.onclick = () => startChatWith(p.uid);
+                row.appendChild(btn);
+                host.appendChild(row);
+            } catch (err) {
+                host.textContent = friendlyError(err);
+            }
+        };
+
+        function chatIdFor(a, b) {
+            return [a, b].sort().join('__');
+        }
+
+        async function startChatWith(peerUid) {
+            if (!peerUid || peerUid === user.uid) {
+                alert('Choose another user to start a chat.');
+                return;
+            }
+            try {
+                const ps = await getDoc(doc(db, 'users', peerUid));
+                if (!ps.exists()) throw Error('This user is unavailable.');
+                const peer = ps.data(), id = chatIdFor(user.uid, peerUid), cr = doc(db, 'chats', id), ex = await getDoc(cr);
+                if (!ex.exists()) await setDoc(cr, { members: [user.uid, peerUid].sort(), createdAt: serverTimestamp(), lastMessage: '', lastMessageAt: serverTimestamp() });
+                activeChat = id;
+                activePeer = peer;
+                $('chat-title').textContent = '@' + peer.username;
+                $('message-input').disabled = false;
+                $('send-btn').disabled = false;
+                showPage('inbox');
+                startMessages(id);
+                startChats();
+            } catch (e) {
+                alert(friendlyError(e));
+            }
+        }
+
+        function startChats() {
+            if (!user) return;
+            if (stopChats) stopChats();
+            const q = query(collection(db, 'chats'), where('members', 'array-contains', user.uid), orderBy('lastMessageAt', 'desc'), limit(50));
+            stopChats = onSnapshot(q, snap => {
+                const host = $('chat-list');
+                host.innerHTML = '';
+                if (snap.empty) {
+                    host.textContent = 'No chats yet. Search for someone to start a conversation.';
+                    return;
+                }
+                snap.forEach(s => {
+                    const c = s.data(), peerUid = (c.members || []).find(x => x !== user.uid);
+                    if (!peerUid) return;
+                    getDoc(doc(db, 'users', peerUid)).then(ps => {
+                        if (!ps.exists()) return;
+                        const p = ps.data(), b = document.createElement('button');
+                        b.style.cssText = 'display:block;width:100%;text-align:left;margin:5px 0';
+                        b.innerHTML = `<strong>@${clean(p.username)}</strong><br><span class="note">${clean((c.lastMessage || 'Start a conversation').slice(0, 55))}</span>`;
+                        b.onclick = () => {
+                            activeChat = s.id;
+                            activePeer = p;
+                            $('chat-title').textContent = '@' + p.username;
+                            $('message-input').disabled = false;
+                            $('send-btn').disabled = false;
+                            startMessages(s.id);
+                        };
+                        host.appendChild(b);
+                    }).catch(console.error);
+                });
+            }, e => {
+                console.error('Inbox:', e);
+                $('chat-list').textContent = friendlyError(e);
+            });
+        }
+
+        function startMessages(id) {
+            if (stopMessages) stopMessages();
+            const q = query(collection(db, 'chats', id, 'messages'), orderBy('createdAt', 'asc'), limit(150));
+            stopMessages = onSnapshot(q, snap => {
+                const host = $('messages');
+                host.innerHTML = '';
+                snap.forEach(s => {
+                    const m = s.data(), b = document.createElement('div');
+                    b.className = 'bubble' + ((m.uid || m.senderId) === user.uid ? ' mine' : '');
+                    b.textContent = m.text || '';
+                    host.appendChild(b);
+                });
+                host.scrollTop = host.scrollHeight;
+            }, e => {
+                $('messages').textContent = friendlyError(e);
+            });
+        }
+
+        $('send-form').onsubmit = async e => {
+            e.preventDefault();
+            const text = $('message-input').value.trim();
+            if (!text || !activeChat || !activePeer) return;
+            const btn = $('send-btn');
+            btn.disabled = true;
+            try {
+                const cr = doc(db, 'chats', activeChat);
+                await addDoc(collection(db, 'chats', activeChat, 'messages'), {
+                    uid: user.uid,
+                    text,
+                    createdAt: serverTimestamp()
+                });
+                await updateDoc(cr, { lastMessage: text, lastMessageAt: serverTimestamp() });
+                $('message-input').value = '';
+            } catch (e) {
+                alert(friendlyError(e));
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
+        $('profile-form').onsubmit = async e => {
+            e.preventDefault();
+            const btn = e.submitter;
+            btn.disabled = true;
+            status('profile-status', 'Saving…');
+            try {
+                const displayName = $('profile-name').value.trim(), bio = $('profile-bio').value.trim(), photoURL = $('profile-photo-url').value.trim();
+                if (!displayName) throw Error('Display name is required.');
+                if (photoURL && !/^https:\/\//i.test(photoURL)) throw Error('Profile picture must be an HTTPS URL.');
+                await updateDoc(doc(db, 'users', user.uid), { displayName, bio, photoURL });
+                me = { ...me, displayName, bio, photoURL };
+                $('my-display').textContent = displayName;
+                if (photoURL) {
+                    $('my-avatar').src = photoURL;
+                    $('my-avatar').style.visibility = 'visible';
+                } else {
+                    $('my-avatar').removeAttribute('src');
+                    $('my-avatar').style.visibility = 'hidden';
+                }
+                setPreview('profile', photoURL);
+                status('profile-status', 'Profile saved.');
+            } catch (e) {
+                status('profile-status', friendlyError(e), true);
+            } finally {
+                btn.disabled = false;
+            }
+        };
+    </script>
 </body>
 </html>
