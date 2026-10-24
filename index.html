@@ -2,92 +2,828 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#090909" />
-  <meta name="description" content="VEYRA — Connect privately." />
-  <title>VEYRA — Connect privately</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080809">
+<meta name="description" content="VEYRA — Your space. Your people.">
+<title>VEYRA — Connect Privately</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:#080809;
+  --panel:#101012;
+  --panel2:#161619;
+  --red:#f12649;
+  --red2:#b70e2e;
+  --white:#f7f7fa;
+  --muted:#898991;
+  --line:#29292e;
+}
+
+* { box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  margin:0;
+  min-height:100vh;
+  color:var(--white);
+  background:
+    radial-gradient(ellipse at 10% 20%,#9d102019,transparent 38%),
+    radial-gradient(ellipse at 95% 85%,#e21c3510,transparent 30%),
+    var(--bg);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+}
+
+button,input { font:inherit; }
+button { cursor:pointer; }
+button:focus-visible,input:focus-visible,a:focus-visible {
+  outline:2px solid var(--red);
+  outline-offset:3px;
+}
+button:disabled { opacity:.6; cursor:wait; }
+a { color:inherit; text-decoration:none; }
+[hidden] { display:none!important; }
+
+.ambient {
+  position:fixed;
+  width:240px;
+  height:240px;
+  border-radius:50%;
+  background:#ed2149;
+  filter:blur(150px);
+  opacity:.08;
+  pointer-events:none;
+  z-index:-1;
+  animation:drift 9s ease-in-out infinite alternate;
+}
+.ambient.one { top:15%;left:-140px; }
+.ambient.two { right:-150px;bottom:0;animation-delay:-4s; }
+
+@keyframes drift {
+  from { transform:translateY(-20px); }
+  to { transform:translateY(45px); }
+}
+@keyframes reveal {
+  from { opacity:0;transform:translateY(18px); }
+  to { opacity:1;transform:translateY(0); }
+}
+@keyframes pulse {
+  0%,100% { box-shadow:0 0 0 0 #f1264920; }
+  50% { box-shadow:0 0 0 9px #f1264900; }
+}
+@keyframes shine {
+  0% { transform:translateX(-150%) skewX(-20deg); }
+  60%,100% { transform:translateX(250%) skewX(-20deg); }
+}
+
+header {
+  height:78px;
+  padding:0 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #ffffff0b;
+  background:#080809b8;
+  backdrop-filter:blur(18px);
+}
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-family:Manrope,sans-serif;
+  font-weight:800;
+  font-size:23px;
+  letter-spacing:4px;
+}
+
+.brand-icon {
+  width:37px;
+  height:37px;
+  display:grid;
+  place-items:center;
+  border:1px solid #f1264980;
+  border-radius:12px;
+  color:white;
+  background:linear-gradient(145deg,#1d1015,#0a0a0b);
+  box-shadow:0 0 25px #f1264912;
+  animation:pulse 4s infinite;
+}
+
+.brand-icon svg { width:23px;height:23px; }
+.brand-name span { color:var(--red); }
+
+.header-right {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#a7a7af;
+  font-size:10px;
+  letter-spacing:1.5px;
+}
+
+.live-dot {
+  width:7px;height:7px;
+  border-radius:50%;
+  background:#f12649;
+  box-shadow:0 0 12px #f12649;
+}
+
+main {
+  width:min(1050px,88%);
+  min-height:calc(100vh - 145px);
+  margin:auto;
+  padding:60px 0;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
+  gap:8%;
+}
+
+.hero { animation:reveal .8s ease both; }
+
+.kicker {
+  color:var(--red);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:3px;
+}
+
+.hero h1 {
+  margin:23px 0 18px;
+  font:800 clamp(47px,6.5vw,77px)/1.04 Manrope,sans-serif;
+  letter-spacing:-4px;
+}
+
+.hero h1 span {
+  color:var(--red);
+  text-shadow:0 0 38px #f1264925;
+}
+
+.intro {
+  max-width:370px;
+  color:#a2a2aa;
+  font-size:14px;
+  line-height:1.9;
+}
+
+.visual {
+  position:relative;
+  width:230px;
+  height:170px;
+  margin:37px 0 18px;
+  display:grid;
+  place-items:center;
+}
+
+.orbit {
+  position:absolute;
+  width:145px;
+  height:145px;
+  border:1px solid #f1264929;
+  border-radius:50%;
+}
+.orbit.two {
+  width:190px;
+  height:190px;
+  border-color:#f1264917;
+}
+.orbit.three {
+  width:230px;
+  height:120px;
+  border-radius:50%;
+  transform:rotate(-32deg);
+}
+.big-v {
+  z-index:1;
+  font:800 104px/.9 Manrope,sans-serif;
+  color:white;
+  text-shadow:0 0 40px #f1264935;
+}
+.big-v span { color:var(--red); }
+
+.spark {
+  position:absolute;
+  top:24px;
+  right:32px;
+  width:9px;height:9px;
+  background:var(--red);
+  border-radius:50%;
+  box-shadow:0 0 20px var(--red);
+}
+
+.hero-foot {
+  color:#62626a;
+  font-size:9px;
+  letter-spacing:1.7px;
+}
+
+.auth-card {
+  position:relative;
+  overflow:hidden;
+  padding:32px;
+  border:1px solid #ffffff14;
+  border-radius:22px;
+  background:linear-gradient(145deg,#151518ed,#0d0d0fee);
+  box-shadow:0 30px 100px #0008,0 0 45px #f1264907;
+  animation:reveal .8s .12s ease both;
+}
+
+.auth-card::before {
+  content:"";
+  position:absolute;
+  height:1px;
+  top:0;left:15%;right:15%;
+  background:linear-gradient(90deg,transparent,#f12649a0,transparent);
+}
+
+.card-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:28px;
+}
+
+.small-mark {
+  width:39px;height:39px;
+  display:grid;
+  place-items:center;
+  border:1px solid #f1264955;
+  border-radius:12px;
+  font:800 22px Manrope,sans-serif;
+  background:#f1264909;
+}
+.small-mark span { color:var(--red); }
+
+.secure {
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#a5a5ad;
+  font-size:9px;
+  letter-spacing:1px;
+}
+
+.secure b { color:#f12649; }
+
+.card-kicker {
+  margin:0 0 9px;
+  color:var(--red);
+  font-size:10px;
+  letter-spacing:2.3px;
+  font-weight:700;
+}
+
+.auth-card h2 {
+  margin:0;
+  font:700 27px Manrope,sans-serif;
+  letter-spacing:-1px;
+}
+
+.sub {
+  margin:10px 0 24px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.7;
+}
+
+.tabs {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  padding:5px;
+  margin-bottom:24px;
+  background:#080809;
+  border:1px solid #29292e;
+  border-radius:11px;
+}
+
+.tab {
+  padding:12px 5px;
+  border:0;
+  border-radius:7px;
+  background:transparent;
+  color:#85858e;
+  font-size:12px;
+  transition:.2s;
+}
+.tab.active {
+  background:#242428;
+  color:white;
+  box-shadow:inset 0 0 0 1px #36363d;
+}
+
+.field { margin-bottom:17px; }
+
+.field-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:9px;
+}
+
+label {
+  color:#e5e5e9;
+  font-size:11px;
+  font-weight:600;
+}
+
+.field input {
+  width:100%;
+  min-height:46px;
+  padding:0 13px;
+  color:white;
+  background:#09090b;
+  border:1px solid #303036;
+  border-radius:9px;
+  outline:none;
+  font-size:12px;
+  transition:border .2s,box-shadow .2s;
+}
+
+.field input:focus {
+  border-color:#f12649a8;
+  box-shadow:0 0 0 3px #f1264910;
+}
+
+.field input::placeholder { color:#606069; }
+
+.password-wrap { position:relative; }
+.password-wrap input { padding-right:66px; }
+
+.show-pass {
+  position:absolute;
+  right:9px;top:50%;
+  transform:translateY(-50%);
+  padding:7px;
+  border:0;
+  background:transparent;
+  color:#a9a9b1;
+  font-size:10px;
+}
+
+.hint {
+  margin:8px 0 0;
+  color:#777780;
+  font-size:10px;
+  line-height:1.6;
+}
+
+.primary {
+  position:relative;
+  width:100%;
+  min-height:48px;
+  margin-top:3px;
+  overflow:hidden;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 16px;
+  border:1px solid #ff3c5d;
+  border-radius:10px;
+  color:white;
+  background:linear-gradient(105deg,#f12649,#c91336);
+  font-size:12px;
+  font-weight:700;
+  box-shadow:0 8px 26px #f126491b;
+  transition:transform .2s,box-shadow .2s;
+}
+
+.primary::after {
+  content:"";
+  position:absolute;
+  top:0;bottom:0;
+  left:0;width:30%;
+  background:linear-gradient(90deg,transparent,#ffffff25,transparent);
+  animation:shine 5s ease-in-out infinite;
+  pointer-events:none;
+}
+
+.primary:hover {
+  transform:translateY(-1px);
+  box-shadow:0 10px 30px #f1264935;
+}
+.primary:active { transform:scale(.99); }
+
+.guest {
+  width:100%;
+  min-height:46px;
+  margin-top:11px;
+  padding:0 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border:1px solid #303036;
+  border-radius:10px;
+  color:#e5e5e9;
+  background:#141417;
+  font-size:12px;
+  transition:.2s;
+}
+.guest:hover { background:#202024;border-color:#45454d; }
+
+.message {
+  min-height:16px;
+  margin:13px 0 0;
+  font-size:11px;
+  line-height:1.65;
+  overflow-wrap:anywhere;
+}
+.message.error { color:#ff7b91; }
+.message.success { color:#81e0aa; }
+
+.terms {
+  margin:15px 0 0;
+  text-align:center;
+  color:#686870;
+  font-size:10px;
+  line-height:1.7;
+}
+
+footer {
+  min-height:67px;
+  padding:18px 7%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  border-top:1px solid #ffffff0b;
+  color:#686870;
+  font-size:9px;
+  letter-spacing:1.1px;
+}
+footer strong { color:#b6b6bd;letter-spacing:2px; }
+
+.welcome-screen { animation:reveal .5s ease both; }
+.welcome-icon {
+  width:66px;height:66px;
+  display:grid;place-items:center;
+  margin-bottom:23px;
+  border:1px solid #f1264960;
+  border-radius:20px;
+  background:#f1264912;
+  color:var(--red);
+  font:800 35px Manrope,sans-serif;
+}
+.welcome-screen h2 { margin-bottom:10px; }
+.welcome-screen p {
+  color:#a2a2aa;
+  font-size:13px;
+  line-height:1.8;
+}
+.profile-pill {
+  display:inline-block;
+  margin:9px 0 22px;
+  padding:9px 12px;
+  border:1px solid #f1264935;
+  border-radius:9px;
+  color:#ff8297;
+  background:#f126490b;
+  font-size:12px;
+}
+.secondary {
+  width:100%;
+  padding:13px;
+  border:1px solid #34343a;
+  border-radius:9px;
+  color:white;
+  background:#17171a;
+}
+@media(max-width:760px) {
+  header { height:68px;padding:0 6%; }
+  .brand { font-size:20px;letter-spacing:3px; }
+  .brand-icon { width:34px;height:34px; }
+  .header-right { font-size:8px;letter-spacing:.8px; }
+  main {
+    width:min(430px,88%);
+    min-height:auto;
+    grid-template-columns:1fr;
+    gap:35px;
+    padding:38px 0 45px;
+  }
+  .hero h1 { font-size:clamp(46px,12vw,62px);letter-spacing:-2.5px; }
+  .intro { font-size:13px; }
+  .visual { display:none; }
+  .hero-foot { margin-top:20px; }
+  .auth-card { padding:25px 21px;border-radius:18px; }
+  .auth-card h2 { font-size:24px; }
+  footer { padding:18px 6%;font-size:8px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    animation:none!important;
+    scroll-behavior:auto!important;
+    transition:none!important;
+  }
+}
+</style>
 </head>
+
 <body>
-  <header class="topbar">
-    <a class="brand" href="#" aria-label="VEYRA home">
-      VEYRA<span class="brand-dot">.</span>
-    </a>
-    <span class="status"><span></span> YOUR SPACE, YOUR PEOPLE</span>
-  </header>
+<div class="ambient one"></div>
+<div class="ambient two"></div>
 
-  <main class="layout">
-    <section class="hero">
-      <p class="eyebrow">A NEW WAY TO CONNECT</p>
-      <h1>Your people.<br />Your <span>space.</span></h1>
-      <p class="intro">
-        A place for real connections, private conversations
-        and moments worth sharing.
-      </p>
-      <div class="hero-mark" aria-hidden="true">
-        <span>V</span>
-        <i></i>
-      </div>
-      <p class="footnote">PRIVATE BY DESIGN · MADE FOR CONNECTION</p>
-    </section>
+<header>
+  <a class="brand" href="#" aria-label="VEYRA home">
+    <span class="brand-icon">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M8 7L19 7L32 32L23 32L8 7Z" fill="#F12649"/>
+        <path d="M13 7H23L16 19L11 11L13 7Z" fill="#FFFFFF"/>
+        <path d="M19 7H31L21 21L16 13L19 7Z" fill="#FFFFFF"/>
+      </svg>
+    </span>
+    <span class="brand-name">VEYRA<span>.</span></span>
+  </a>
+  <div class="header-right"><span class="live-dot"></span> YOUR SPACE, YOUR PEOPLE</div>
+</header>
 
-    <section class="auth-card" aria-labelledby="welcome-title">
-      <div class="card-top">
-        <div class="mini-logo">V<span>.</span></div>
-        <span class="secure-label">● YOUR SPACE</span>
-      </div>
+<main>
+  <section class="hero">
+    <p class="kicker">A NEW WAY TO CONNECT</p>
+    <h1>Your people.<br>Your <span>space.</span></h1>
+    <p class="intro">
+      A place for real connections, private conversations
+      and moments worth sharing. Your world, on your terms.
+    </p>
 
-      <p class="eyebrow">WELCOME TO VEYRA</p>
-      <h2 id="welcome-title">Start your journey.</h2>
-      <p class="muted">Sign in or create your own account.</p>
+    <div class="visual" aria-hidden="true">
+      <div class="orbit two"></div>
+      <div class="orbit"></div>
+      <div class="orbit three"></div>
+      <div class="big-v">V<span>.</span></div>
+      <div class="spark"></div>
+    </div>
+
+    <p class="hero-foot">PRIVATE BY DESIGN · MADE FOR CONNECTION</p>
+  </section>
+
+  <section class="auth-card" id="auth-card">
+    <div class="card-head">
+      <div class="small-mark">V<span>.</span></div>
+      <div class="secure"><b>●</b> YOUR SPACE</div>
+    </div>
+
+    <div id="auth-view">
+      <p class="card-kicker">WELCOME TO VEYRA</p>
+      <h2 id="heading">Start your journey.</h2>
+      <p class="sub" id="subheading">Sign in or create your own account.</p>
 
       <div class="tabs" role="tablist" aria-label="Account options">
         <button class="tab active" id="login-tab" type="button"
-          role="tab" aria-selected="true" data-mode="login">Sign in</button>
+          role="tab" aria-selected="true">Sign in</button>
         <button class="tab" id="signup-tab" type="button"
-          role="tab" aria-selected="false" data-mode="signup">Create account</button>
+          role="tab" aria-selected="false">Create account</button>
       </div>
 
       <form id="auth-form">
-        <label for="email">Email address</label>
-        <input id="email" name="email" type="email"
-          placeholder="you@example.com" autocomplete="email" required />
+        <div class="field">
+          <div class="field-head"><label for="email">Email address</label></div>
+          <input id="email" type="email" placeholder="you@example.com"
+            autocomplete="email" required>
+        </div>
 
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password"
-          placeholder="At least 6 characters" minlength="6"
-          autocomplete="current-password" required />
+        <div class="field">
+          <div class="field-head"><label for="password">Password</label></div>
+          <div class="password-wrap">
+            <input id="password" type="password"
+              placeholder="At least 6 characters"
+              minlength="6" autocomplete="current-password" required>
+            <button class="show-pass" id="show-pass" type="button"
+              aria-label="Show password">SHOW</button>
+          </div>
+        </div>
 
-        <div id="username-wrap" hidden>
-          <label for="username">Choose a username</label>
-          <input id="username" name="username" type="text"
-            placeholder="yourname" minlength="3" maxlength="20"
-            pattern="[A-Za-z0-9_]+"
-            autocomplete="username" />
+        <div class="field" id="username-field" hidden>
+          <div class="field-head"><label for="username">Choose a username</label></div>
+          <input id="username" type="text" placeholder="yourname"
+            minlength="3" maxlength="20"
+            pattern="[A-Za-z0-9_]+" autocomplete="username">
           <p class="hint">3–20 characters: letters, numbers and underscores.</p>
         </div>
 
-        <button class="primary-btn" id="submit-btn" type="submit">
-          Sign in <span>↗</span>
+        <button class="primary" id="submit-btn" type="submit">
+          <span id="submit-text">Sign in</span><span>↗</span>
         </button>
       </form>
 
-      <button class="guest-btn" id="guest-btn" type="button">
-        Continue as guest <span>→</span>
+      <button class="guest" id="guest-btn" type="button">
+        <span>Continue as guest</span><span>→</span>
       </button>
 
       <p class="message" id="message" role="status" aria-live="polite"></p>
       <p class="terms">By continuing, you agree to use VEYRA respectfully.</p>
-    </section>
-  </main>
+    </div>
 
-  <footer>
-    <span>VEYRA<span class="brand-dot">.</span></span>
-    <span>CONNECT PRIVATELY.</span>
-    <span>© 2026 VEYRA</span>
-  </footer>
+    <div id="welcome-view" class="welcome-screen" hidden>
+      <div class="welcome-icon">V.</div>
+      <p class="card-kicker">YOU'RE IN VEYRA</p>
+      <h2 id="welcome-title">Welcome.</h2>
+      <p id="welcome-description">Your next chapter starts here.</p>
+      <div class="profile-pill" id="welcome-identity"></div>
+      <p>Your account is connected. The profile, people search and private inbox will be added as we complete the next steps.</p>
+      <button class="secondary" id="back-btn" type="button">Back to sign in</button>
+    </div>
+  </section>
+</main>
 
-  <script type="module" src="app.js"></script>
+<footer>
+  <strong>VEYRA<span style="color:#f12649">.</span></strong>
+  <span>CONNECT PRIVATELY.</span>
+  <span>© 2026 VEYRA</span>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInAnonymously,
+  updateProfile,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCLCyL9aHA75fOOSKzn-BvBE4KGeJ9gl6k",
+  authDomain: "veyra-ec444.firebaseapp.com",
+  projectId: "veyra-ec444",
+  storageBucket: "veyra-ec444.firebasestorage.app",
+  messagingSenderId: "379323509837",
+  appId: "1:379323509837:web:02275c08cfa206c8ec0004"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const $ = id => document.getElementById(id);
+
+let mode = "login";
+let busy = false;
+let firstAuthState = true;
+
+function showMessage(text, type = "error") {
+  $("message").textContent = text;
+  $("message").className = "message " + type;
+}
+
+function setBusy(value) {
+  busy = value;
+  ["submit-btn","guest-btn","login-tab","signup-tab","back-btn"].forEach(id => {
+    const el = $(id);
+    if (el) el.disabled = value;
+  });
+  $("submit-text").textContent = value
+    ? "Please wait..."
+    : mode === "login" ? "Sign in" : "Create account";
+}
+
+function setMode(nextMode) {
+  if (busy) return;
+  mode = nextMode;
+  const signup = mode === "signup";
+
+  $("login-tab").classList.toggle("active", !signup);
+  $("signup-tab").classList.toggle("active", signup);
+  $("login-tab").setAttribute("aria-selected", String(!signup));
+  $("signup-tab").setAttribute("aria-selected", String(signup));
+
+  $("username-field").hidden = !signup;
+  $("username").required = signup;
+  $("password").autocomplete = signup ? "new-password" : "current-password";
+  $("heading").textContent = signup ? "Create your account." : "Start your journey.";
+  $("subheading").textContent = signup
+    ? "Your own space starts with a few details."
+    : "Sign in and reconnect with your people.";
+
+  $("submit-text").textContent = signup ? "Create account" : "Sign in";
+  showMessage("");
+}
+
+$("login-tab").addEventListener("click", () => setMode("login"));
+$("signup-tab").addEventListener("click", () => setMode("signup"));
+
+$("show-pass").addEventListener("click", () => {
+  const field = $("password");
+  const visible = field.type === "password";
+  field.type = visible ? "text" : "password";
+  $("show-pass").textContent = visible ? "HIDE" : "SHOW";
+  $("show-pass").setAttribute("aria-label", visible ? "Hide password" : "Show password");
+});
+
+function errorText(error) {
+  const errors = {
+    "auth/invalid-email": "Please enter a valid email address.",
+    "auth/missing-password": "Please enter your password.",
+    "auth/weak-password": "Choose a stronger password with at least 6 characters.",
+    "auth/email-already-in-use": "This email already has an account. Please sign in.",
+    "auth/invalid-credential": "Email or password is incorrect.",
+    "auth/user-not-found": "Account not found. Create an account first.",
+    "auth/wrong-password": "Incorrect password. Try again.",
+    "auth/too-many-requests": "Too many attempts. Try again later.",
+    "auth/network-request-failed": "Network error. Check your connection.",
+    "auth/operation-not-allowed": "This sign-in method is not enabled in Firebase.",
+    "auth/unauthorized-domain": "Add this website domain to Firebase Authentication's authorized domains."
+  };
+  return errors[error.code] || "Something went wrong. Please try again.";
+}
+
+function showWelcome(user) {
+  $("auth-view").hidden = true;
+  $("welcome-view").hidden = false;
+
+  const name = user.isAnonymous
+    ? "Guest"
+    : user.displayName || (user.email ? user.email.split("@")[0] : "Member");
+
+  $("welcome-title").textContent = `Welcome, ${name}.`;
+  $("welcome-description").textContent = user.isAnonymous
+    ? "You're exploring VEYRA as a guest."
+    : "You've successfully signed in to VEYRA.";
+
+  $("welcome-identity").textContent = user.isAnonymous
+    ? "GUEST ACCOUNT"
+    : "@" + name;
+}
+
+onAuthStateChanged(auth, user => {
+  // Don't replace the screen with a welcome page during initial load
+  // unless the user already has a saved signed-in session.
+  if (user && !firstAuthState) {
+    showWelcome(user);
+  } else if (user && firstAuthState) {
+    showWelcome(user);
+  }
+  firstAuthState = false;
+});
+
+$("auth-form").addEventListener("submit", async event => {
+  event.preventDefault();
+  if (busy) return;
+
+  const email = $("email").value.trim();
+  const password = $("password").value;
+  const username = $("username").value.trim();
+
+  if (mode === "signup" && !/^[A-Za-z0-9_]{3,20}$/.test(username)) {
+    showMessage("Username must be 3–20 characters: letters, numbers or underscores.");
+    return;
+  }
+
+  setBusy(true);
+  showMessage("");
+
+  try {
+    if (mode === "signup") {
+      const credential = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(credential.user, { displayName: username });
+      showWelcome(credential.user);
+    } else {
+      const credential = await signInWithEmailAndPassword(auth, email, password);
+      showWelcome(credential.user);
+    }
+  } catch (error) {
+    showMessage(errorText(error));
+  } finally {
+    setBusy(false);
+  }
+});
+
+$("guest-btn").addEventListener("click", async () => {
+  if (busy) return;
+  setBusy(true);
+  showMessage("");
+
+  try {
+    const credential = await signInAnonymously(auth);
+    showWelcome(credential.user);
+  } catch (error) {
+    showMessage(errorText(error));
+  } finally {
+    setBusy(false);
+  }
+});
+
+$("back-btn").addEventListener("click", async () => {
+  if (busy) return;
+  setBusy(true);
+
+  try {
+    await signOut(auth);
+    $("welcome-view").hidden = true;
+    $("auth-view").hidden = false;
+    $("password").value = "";
+    showMessage("Signed out successfully.", "success");
+  } catch (error) {
+    showMessage(errorText(error));
+  } finally {
+    setBusy(false);
+  }
+});
+</script>
 </body>
 </html>
