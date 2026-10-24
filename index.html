@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090909" />
+  <meta name="description" content="VEYRA — Connect privately." />
+  <title>VEYRA — Connect privately</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="VEYRA home">
+      VEYRA<span class="brand-dot">.</span>
+    </a>
+    <span class="status"><span></span> YOUR SPACE, YOUR PEOPLE</span>
+  </header>
+
+  <main class="layout">
+    <section class="hero">
+      <p class="eyebrow">A NEW WAY TO CONNECT</p>
+      <h1>Your people.<br />Your <span>space.</span></h1>
+      <p class="intro">
+        A place for real connections, private conversations
+        and moments worth sharing.
+      </p>
+      <div class="hero-mark" aria-hidden="true">
+        <span>V</span>
+        <i></i>
+      </div>
+      <p class="footnote">PRIVATE BY DESIGN · MADE FOR CONNECTION</p>
+    </section>
+
+    <section class="auth-card" aria-labelledby="welcome-title">
+      <div class="card-top">
+        <div class="mini-logo">V<span>.</span></div>
+        <span class="secure-label">● YOUR SPACE</span>
+      </div>
+
+      <p class="eyebrow">WELCOME TO VEYRA</p>
+      <h2 id="welcome-title">Start your journey.</h2>
+      <p class="muted">Sign in or create your own account.</p>
+
+      <div class="tabs" role="tablist" aria-label="Account options">
+        <button class="tab active" id="login-tab" type="button"
+          role="tab" aria-selected="true" data-mode="login">Sign in</button>
+        <button class="tab" id="signup-tab" type="button"
+          role="tab" aria-selected="false" data-mode="signup">Create account</button>
+      </div>
+
+      <form id="auth-form">
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email"
+          placeholder="you@example.com" autocomplete="email" required />
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password"
+          placeholder="At least 6 characters" minlength="6"
+          autocomplete="current-password" required />
+
+        <div id="username-wrap" hidden>
+          <label for="username">Choose a username</label>
+          <input id="username" name="username" type="text"
+            placeholder="yourname" minlength="3" maxlength="20"
+            pattern="[A-Za-z0-9_]+"
+            autocomplete="username" />
+          <p class="hint">3–20 characters: letters, numbers and underscores.</p>
+        </div>
+
+        <button class="primary-btn" id="submit-btn" type="submit">
+          Sign in <span>↗</span>
+        </button>
+      </form>
+
+      <button class="guest-btn" id="guest-btn" type="button">
+        Continue as guest <span>→</span>
+      </button>
+
+      <p class="message" id="message" role="status" aria-live="polite"></p>
+      <p class="terms">By continuing, you agree to use VEYRA respectfully.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>VEYRA<span class="brand-dot">.</span></span>
+    <span>CONNECT PRIVATELY.</span>
+    <span>© 2026 VEYRA</span>
+  </footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
