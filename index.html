@@ -3,634 +3,543 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#080809">
-<meta name="description" content="VEYRA — Your space. Your people.">
-<title>VEYRA — Connect Privately</title>
+<title>VEYRA — Your Space, Your People</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --bg:#080809;
-  --panel:#101012;
-  --red:#f12649;
-  --white:#f7f7fa;
-  --muted:#898991;
-  --line:#29292e;
+  --bg:#080809; --panel:#111114; --panel2:#19191e;
+  --red:#f12649; --white:#f7f7fa; --muted:#92929d;
+  --line:#29292f; --green:#7ce6ad;
 }
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body {
-  margin:0; min-height:100vh; color:var(--white);
-  background:radial-gradient(ellipse at 10% 20%,#9d102019,transparent 38%),
-  radial-gradient(ellipse at 95% 85%,#e21c3510,transparent 30%),var(--bg);
-  font-family:'DM Sans',sans-serif; overflow-x:hidden;
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 5% 10%,#a20d211b,transparent 35%),var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+button:disabled{opacity:.55;cursor:wait}
+[hidden]{display:none!important}
+a{color:inherit;text-decoration:none}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.top{height:68px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff12;background:#09090bed;position:sticky;top:0;z-index:5;backdrop-filter:blur(15px)}
+.logo{font:800 22px Manrope,sans-serif;letter-spacing:4px}.logo span{color:var(--red)}
+.live{font-size:10px;color:var(--muted);letter-spacing:1.5px}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);margin-right:8px}
+button,.btn{border:1px solid var(--line);background:var(--panel2);color:var(--white);padding:11px 14px;border-radius:10px}
+.primary{background:linear-gradient(110deg,#f12649,#b70e2e);border-color:#f12649;font-weight:700}
+.danger{color:#ff8499}
+.muted{color:var(--muted)}.small{font-size:12px;line-height:1.6}
+input,textarea{width:100%;background:#09090b;color:white;border:1px solid #34343c;border-radius:10px;padding:13px;margin:7px 0 14px}
+textarea{resize:vertical;min-height:95px}
+label{font-size:12px;color:#d8d8df;font-weight:600}
+.wrap{width:min(1100px,92%);margin:auto}
+.auth-layout{min-height:calc(100vh - 130px);display:grid;grid-template-columns:1fr 420px;align-items:center;gap:55px;padding:45px 0}
+.hero h1{font:800 clamp(44px,6vw,76px)/1.05 Manrope,sans-serif;letter-spacing:-3px;margin:20px 0}
+.hero h1 span{color:var(--red)}
+.kicker{color:var(--red);font-size:10px;font-weight:700;letter-spacing:3px}
+.intro{color:#aaaab4;line-height:1.9;max-width:390px}
+.orbit{height:140px;width:140px;margin:35px 0;display:grid;place-items:center;border:1px solid #f1264930;border-radius:50%;box-shadow:0 0 0 20px #f1264906,0 0 0 40px #f1264903;font:800 82px Manrope}
+.orbit span{color:var(--red)}
+.card{position:relative;background:linear-gradient(145deg,#151518,#0d0d0f);border:1px solid #ffffff16;border-radius:20px;padding:27px;box-shadow:0 25px 90px #0007;min-width:0}
+.card:before{content:"";position:absolute;top:0;left:15%;right:15%;height:1px;background:linear-gradient(90deg,transparent,#f12649,transparent)}
+.card h2{font:700 25px Manrope;margin:8px 0}
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;background:#080809;padding:5px;border:1px solid var(--line);border-radius:12px;margin:20px 0}
+.tab{border:0;background:transparent;color:var(--muted)}
+.tab.active{background:#26262c;color:white}
+.note{font-size:12px;color:var(--muted);line-height:1.7}
+.status{font-size:12px;min-height:18px;margin:8px 0;color:var(--green);overflow-wrap:anywhere}
+.status.error{color:#ff8499}
+.app-layout{display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px;padding:28px 0 60px}
+.sidebar{align-self:start;position:sticky;top:90px;display:grid;gap:9px}
+.navbtn{text-align:left;background:transparent;border-color:transparent;color:#b1b1bb}
+.navbtn.active,.navbtn:hover{background:#19191e;border-color:#303037;color:white}
+.content{min-width:0}
+.page-title{font:700 28px Manrope;margin:0 0 6px}
+.panel{padding:22px;border:1px solid var(--line);background:#101013;border-radius:16px;margin:18px 0}
+.row{display:flex;align-items:center;gap:12px}
+.between{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.avatar{width:45px;height:45px;border-radius:50%;object-fit:cover;background:#251017;border:1px solid #f126494c;display:grid;place-items:center;flex-shrink:0;font-weight:800;color:#ff8198}
+.avatar.big{width:88px;height:88px;font-size:26px}
+.userline{min-width:0}.userline strong{display:block;overflow-wrap:anywhere}.userline small{color:var(--muted)}
+.listitem{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #ffffff0b}
+.listitem:last-child{border-bottom:0}
+.listitem .right{margin-left:auto}
+.post{padding:0;overflow:hidden}
+.post-head{padding:16px;display:flex;align-items:center;gap:10px}
+.post-body{padding:0 16px 16px;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65}
+.post-img{display:block;width:100%;max-height:540px;object-fit:contain;background:#080809}
+.post-actions{display:flex;gap:8px;padding:0 16px 16px}
+.post-actions button{padding:8px 12px}
+.searchbar{display:flex;gap:8px}.searchbar input{margin:0;min-width:0}
+.chat-layout{display:grid;grid-template-columns:minmax(120px,.8fr) minmax(0,1.2fr);gap:14px}
+.chat-list{max-height:470px;overflow:auto}
+.chat-window{border:1px solid var(--line);border-radius:13px;overflow:hidden;min-width:0}
+.chat-head{padding:13px;border-bottom:1px solid var(--line)}
+.messages{height:330px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:9px}
+.bubble{max-width:85%;padding:10px 12px;border-radius:14px;background:#24242b;align-self:flex-start;overflow-wrap:anywhere;white-space:pre-wrap;font-size:13px;line-height:1.5}
+.bubble.mine{align-self:flex-end;background:#a81734}
+.sendrow{display:flex;gap:8px;padding:10px;border-top:1px solid var(--line)}
+.sendrow input{margin:0;min-width:0}
+.sendrow button{flex-shrink:0}
+footer{padding:22px 5%;border-top:1px solid #ffffff10;color:#686872;font-size:10px;letter-spacing:1.2px;display:flex;justify-content:space-between;gap:10px}
+@media(max-width:760px){
+ .auth-layout{grid-template-columns:1fr;gap:25px;padding:35px 0}
+ .hero h1{font-size:48px}.orbit{display:none}
+ .auth-layout .hero .intro{font-size:13px}
+ .app-layout{grid-template-columns:1fr;gap:15px;padding-top:16px}
+ .sidebar{position:static;display:flex;overflow-x:auto;gap:6px}
+ .navbtn{white-space:nowrap;padding:10px 12px;font-size:12px}
+ .card{padding:21px}
+ .chat-layout{grid-template-columns:1fr}
+ .chat-list{max-height:180px}
+ .page-title{font-size:24px}
+ footer{font-size:8px}
 }
-button,input { font:inherit; }
-button { cursor:pointer; }
-button:disabled { opacity:.6; cursor:wait; }
-button:focus-visible,input:focus-visible {
-  outline:2px solid var(--red); outline-offset:3px;
-}
-[hidden] { display:none!important; }
-
-@keyframes drift {
-  from { transform:translateY(-20px); }
-  to { transform:translateY(45px); }
-}
-@keyframes reveal {
-  from { opacity:0;transform:translateY(18px); }
-  to { opacity:1;transform:translateY(0); }
-}
-@keyframes pulse {
-  0%,100% { box-shadow:0 0 0 0 #f1264920; }
-  50% { box-shadow:0 0 0 9px #f1264900; }
-}
-@keyframes shine {
-  0% { transform:translateX(-150%) skewX(-20deg); }
-  60%,100% { transform:translateX(250%) skewX(-20deg); }
-}
-
-#veyra-intro {
-  position:fixed; inset:0; z-index:999999;
-  display:grid; place-items:center;
-  background:#080809;
-  opacity:1; visibility:visible;
-  transition:opacity .75s ease,visibility .75s ease;
-}
-#veyra-intro video {
-  display:block; width:100%; height:100%;
-  object-fit:contain; background:#080809;
-}
-#veyra-intro.finished {
-  opacity:0; visibility:hidden; pointer-events:none;
-}
-#intro-skip {
-  position:absolute; right:18px;
-  bottom:max(22px,env(safe-area-inset-bottom));
-  padding:11px 17px; border:1px solid #ffffff35;
-  border-radius:30px; background:#17171be8;
-  color:white; font-size:12px; backdrop-filter:blur(12px);
-}
-#intro-progress {
-  position:absolute; bottom:0; left:0;
-  height:3px; width:0; background:var(--red);
-  box-shadow:0 0 12px var(--red);
-}
-
-.ambient {
-  position:fixed; width:240px; height:240px; border-radius:50%;
-  background:#ed2149; filter:blur(150px); opacity:.08;
-  pointer-events:none; z-index:-1;
-  animation:drift 9s ease-in-out infinite alternate;
-}
-.ambient.one { top:15%;left:-140px; }
-.ambient.two { right:-150px;bottom:0;animation-delay:-4s; }
-
-header {
-  height:78px; padding:0 7%; display:flex;
-  align-items:center; justify-content:space-between;
-  border-bottom:1px solid #ffffff0b;
-  background:#080809b8; backdrop-filter:blur(18px);
-}
-.brand {
-  display:flex; align-items:center; gap:11px;
-  font-family:Manrope,sans-serif; font-weight:800;
-  font-size:23px; letter-spacing:4px; color:white;
-  text-decoration:none;
-}
-.brand-icon {
-  width:37px;height:37px;display:grid;place-items:center;
-  border:1px solid #f1264980;border-radius:12px;
-  background:linear-gradient(145deg,#1d1015,#0a0a0b);
-  box-shadow:0 0 25px #f1264912;animation:pulse 4s infinite;
-}
-.brand-icon svg { width:23px;height:23px; }
-.brand-name span { color:var(--red); }
-.header-right {
-  display:flex;align-items:center;gap:9px;
-  color:#a7a7af;font-size:10px;letter-spacing:1.5px;
-}
-.live-dot {
-  width:7px;height:7px;border-radius:50%;
-  background:var(--red);box-shadow:0 0 12px var(--red);
-}
-
-main {
-  width:min(1050px,88%); min-height:calc(100vh - 145px);
-  margin:auto;padding:60px 0;display:grid;
-  grid-template-columns:1.1fr .9fr;align-items:center;gap:8%;
-}
-.hero { animation:reveal .8s ease both; }
-.kicker {
-  color:var(--red);font-size:10px;font-weight:700;letter-spacing:3px;
-}
-.hero h1 {
-  margin:23px 0 18px;
-  font:800 clamp(47px,6.5vw,77px)/1.04 Manrope,sans-serif;
-  letter-spacing:-4px;
-}
-.hero h1 span { color:var(--red);text-shadow:0 0 38px #f1264925; }
-.intro { max-width:370px;color:#a2a2aa;font-size:14px;line-height:1.9; }
-.visual {
-  position:relative;width:230px;height:170px;margin:37px 0 18px;
-  display:grid;place-items:center;
-}
-.orbit {
-  position:absolute;width:145px;height:145px;
-  border:1px solid #f1264929;border-radius:50%;
-}
-.orbit.two { width:190px;height:190px;border-color:#f1264917; }
-.orbit.three {
-  width:230px;height:120px;border-radius:50%;transform:rotate(-32deg);
-}
-.big-v {
-  z-index:1;font:800 104px/.9 Manrope,sans-serif;color:white;
-  text-shadow:0 0 40px #f1264935;
-}
-.big-v span { color:var(--red); }
-.spark {
-  position:absolute;top:24px;right:32px;width:9px;height:9px;
-  background:var(--red);border-radius:50%;box-shadow:0 0 20px var(--red);
-}
-.hero-foot { color:#62626a;font-size:9px;letter-spacing:1.7px; }
-
-.auth-card {
-  position:relative;overflow:hidden;padding:32px;
-  border:1px solid #ffffff14;border-radius:22px;
-  background:linear-gradient(145deg,#151518ed,#0d0d0fee);
-  box-shadow:0 30px 100px #0008,0 0 45px #f1264907;
-  animation:reveal .8s .12s ease both;
-}
-.auth-card::before {
-  content:"";position:absolute;height:1px;top:0;left:15%;right:15%;
-  background:linear-gradient(90deg,transparent,#f12649a0,transparent);
-}
-.card-head {
-  display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;
-}
-.small-mark {
-  width:39px;height:39px;display:grid;place-items:center;
-  border:1px solid #f1264955;border-radius:12px;
-  font:800 22px Manrope,sans-serif;background:#f1264909;
-}
-.small-mark span { color:var(--red); }
-.secure { display:flex;align-items:center;gap:7px;color:#a5a5ad;font-size:9px;letter-spacing:1px; }
-.secure b { color:var(--red); }
-.card-kicker { margin:0 0 9px;color:var(--red);font-size:10px;letter-spacing:2.3px;font-weight:700; }
-.auth-card h2 { margin:0;font:700 27px Manrope,sans-serif;letter-spacing:-1px; }
-.sub { margin:10px 0 24px;color:var(--muted);font-size:12px;line-height:1.7; }
-
-.tabs {
-  display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:5px;
-  margin-bottom:24px;background:#080809;border:1px solid #29292e;border-radius:11px;
-}
-.tab {
-  padding:12px 5px;border:0;border-radius:7px;
-  background:transparent;color:#85858e;font-size:12px;transition:.2s;
-}
-.tab.active { background:#242428;color:white;box-shadow:inset 0 0 0 1px #36363d; }
-
-.field { margin-bottom:17px; }
-.field-head { display:flex;align-items:center;justify-content:space-between;margin-bottom:9px; }
-label { color:#e5e5e9;font-size:11px;font-weight:600; }
-.field input {
-  width:100%;min-height:46px;padding:0 13px;color:white;
-  background:#09090b;border:1px solid #303036;border-radius:9px;
-  outline:none;font-size:12px;transition:border .2s,box-shadow .2s;
-}
-.field input:focus { border-color:#f12649a8;box-shadow:0 0 0 3px #f1264910; }
-.field input::placeholder { color:#606069; }
-.password-wrap { position:relative; }
-.password-wrap input { padding-right:66px; }
-.show-pass {
-  position:absolute;right:9px;top:50%;transform:translateY(-50%);
-  padding:7px;border:0;background:transparent;color:#a9a9b1;font-size:10px;
-}
-.hint { margin:8px 0 0;color:#777780;font-size:10px;line-height:1.6; }
-.forgot-btn {
-  display:block;margin:-5px 0 17px auto;padding:5px 0;
-  border:0;background:transparent;color:#ff7189;font-size:11px;
-}
-.primary {
-  position:relative;width:100%;min-height:48px;margin-top:3px;overflow:hidden;
-  display:flex;justify-content:space-between;align-items:center;padding:0 16px;
-  border:1px solid #ff3c5d;border-radius:10px;color:white;
-  background:linear-gradient(105deg,#f12649,#c91336);
-  font-size:12px;font-weight:700;box-shadow:0 8px 26px #f126491b;transition:.2s;
-}
-.primary::after {
-  content:"";position:absolute;top:0;bottom:0;left:0;width:30%;
-  background:linear-gradient(90deg,transparent,#ffffff25,transparent);
-  animation:shine 5s ease-in-out infinite;pointer-events:none;
-}
-.primary:hover { transform:translateY(-1px);box-shadow:0 10px 30px #f1264935; }
-.primary:active { transform:scale(.99); }
-.guest {
-  width:100%;min-height:46px;margin-top:11px;padding:0 15px;
-  display:flex;justify-content:space-between;align-items:center;
-  border:1px solid #303036;border-radius:10px;color:#e5e5e9;
-  background:#141417;font-size:12px;transition:.2s;
-}
-.guest:hover { background:#202024;border-color:#45454d; }
-.message { min-height:16px;margin:13px 0 0;font-size:11px;line-height:1.65;overflow-wrap:anywhere; }
-.message.error { color:#ff7b91; }
-.message.success { color:#81e0aa; }
-.terms { margin:15px 0 0;text-align:center;color:#686870;font-size:10px;line-height:1.7; }
-
-.welcome-screen { animation:reveal .5s ease both; }
-.welcome-icon {
-  width:66px;height:66px;display:grid;place-items:center;margin-bottom:23px;
-  border:1px solid #f1264960;border-radius:20px;background:#f1264912;
-  color:var(--red);font:800 35px Manrope,sans-serif;
-}
-.welcome-screen h2 { margin-bottom:10px; }
-.welcome-screen p { color:#a2a2aa;font-size:13px;line-height:1.8; }
-.profile-pill {
-  display:inline-block;margin:9px 0 22px;padding:9px 12px;
-  border:1px solid #f1264935;border-radius:9px;
-  color:#ff8297;background:#f126490b;font-size:12px;
-}
-.secondary {
-  width:100%;padding:13px;border:1px solid #34343a;
-  border-radius:9px;color:white;background:#17171a;
-}
-footer {
-  min-height:67px;padding:18px 7%;display:flex;justify-content:space-between;
-  align-items:center;gap:12px;border-top:1px solid #ffffff0b;
-  color:#686870;font-size:9px;letter-spacing:1.1px;
-}
-footer strong { color:#b6b6bd;letter-spacing:2px; }
-
-@media(max-width:760px) {
-  header { height:68px;padding:0 6%; }
-  .brand { font-size:20px;letter-spacing:3px; }
-  .brand-icon { width:34px;height:34px; }
-  .header-right { font-size:8px;letter-spacing:.8px; }
-  main {
-    width:min(430px,88%);min-height:auto;grid-template-columns:1fr;
-    gap:35px;padding:38px 0 45px;
-  }
-  .hero h1 { font-size:clamp(46px,12vw,62px);letter-spacing:-2.5px; }
-  .intro { font-size:13px; }
-  .visual { display:none; }
-  .hero-foot { margin-top:20px; }
-  .auth-card { padding:25px 21px;border-radius:18px; }
-  .auth-card h2 { font-size:24px; }
-  footer { padding:18px 6%;font-size:8px; }
-}
-@media(prefers-reduced-motion:reduce) {
-  *,*::before,*::after { animation:none!important;scroll-behavior:auto!important;transition:none!important; }
-  #veyra-intro { transition:none; }
+@media(prefers-reduced-motion:no-preference){
+ .card,.hero{animation:appear .55s ease both}
+ @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 }
 </style>
 </head>
 
 <body>
-
-<!-- VEYRA INTRO VIDEO -->
-<div id="veyra-intro" aria-label="VEYRA intro">
-  <video id="intro-video" autoplay muted playsinline preload="auto">
-    <source src="./VEYRA_logo_intro_centered.mp4" type="video/mp4">
-  </video>
-  <button id="intro-skip" type="button">Skip intro ↗</button>
-  <div id="intro-progress"></div>
-</div>
-
-<div class="ambient one"></div>
-<div class="ambient two"></div>
-
-<header>
-  <a class="brand" href="#" aria-label="VEYRA home">
-    <span class="brand-icon">
-      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <path d="M8 7L19 7L32 32L23 32L8 7Z" fill="#F12649"/>
-        <path d="M13 7H23L16 19L11 11L13 7Z" fill="#FFFFFF"/>
-        <path d="M19 7H31L21 21L16 13L19 7Z" fill="#FFFFFF"/>
-      </svg>
-    </span>
-    <span class="brand-name">VEYRA<span>.</span></span>
-  </a>
-  <div class="header-right"><span class="live-dot"></span> YOUR SPACE, YOUR PEOPLE</div>
+<header class="top">
+  <a href="#" class="logo">VEYRA<span>.</span></a>
+  <div class="live"><span class="dot"></span>YOUR SPACE, YOUR PEOPLE</div>
+  <button id="logout" hidden>Sign out</button>
 </header>
 
-<main>
-  <section class="hero">
+<section id="auth-screen" class="wrap auth-layout">
+  <div class="hero">
     <p class="kicker">A NEW WAY TO CONNECT</p>
     <h1>Your people.<br>Your <span>space.</span></h1>
-    <p class="intro">A place for real connections, private conversations and moments worth sharing. Your world, on your terms.</p>
-    <div class="visual" aria-hidden="true">
-      <div class="orbit two"></div><div class="orbit"></div><div class="orbit three"></div>
-      <div class="big-v">V<span>.</span></div><div class="spark"></div>
+    <p class="intro">Real connections, private conversations and moments worth sharing. Your world, on your terms.</p>
+    <div class="orbit">V<span>.</span></div>
+    <p class="note">PRIVATE BY DESIGN · MADE FOR CONNECTION</p>
+  </div>
+  <div class="card">
+    <p class="kicker">WELCOME TO VEYRA</p>
+    <h2 id="auth-heading">Start your journey.</h2>
+    <p class="note" id="auth-sub">Sign in or create your own account.</p>
+    <div class="tabs">
+      <button class="tab active" id="login-tab">Sign in</button>
+      <button class="tab" id="signup-tab">Create account</button>
     </div>
-    <p class="hero-foot">PRIVATE BY DESIGN · MADE FOR CONNECTION</p>
-  </section>
+    <form id="auth-form">
+      <div id="name-field" hidden>
+        <label for="display-name">Display name</label>
+        <input id="display-name" maxlength="35" placeholder="Your name">
+        <label for="username">Unique username</label>
+        <input id="username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" placeholder="yourname">
+        <p class="note">3–20 letters, numbers or underscores. Usernames cannot be changed in this version.</p>
+      </div>
+      <label for="email">Email address</label>
+      <input id="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+      <label for="password">Password</label>
+      <input id="password" type="password" minlength="6" autocomplete="current-password" placeholder="At least 6 characters" required>
+      <button class="primary" id="auth-submit" style="width:100%">Sign in ↗</button>
+    </form>
+    <button id="guest-btn" style="width:100%;margin-top:10px">Continue as guest →</button>
+    <p class="status" id="auth-status" role="status"></p>
+    <p class="note">Be respectful. Never share passwords or private information with strangers.</p>
+  </div>
+</section>
 
-  <section class="auth-card" id="auth-card">
-    <div class="card-head">
-      <div class="small-mark">V<span>.</span></div>
-      <div class="secure"><b>●</b> YOUR SPACE</div>
-    </div>
+<section id="app-screen" class="wrap app-layout" hidden>
+  <aside class="sidebar">
+    <button class="navbtn active" data-page="feed">⌂ &nbsp; Home feed</button>
+    <button class="navbtn" data-page="search">⌕ &nbsp; Find people</button>
+    <button class="navbtn" data-page="inbox">✉ &nbsp; Messages</button>
+    <button class="navbtn" data-page="profile">◉ &nbsp; My profile</button>
+  </aside>
 
-    <div id="auth-view">
-      <p class="card-kicker">WELCOME TO VEYRA</p>
-      <h2 id="heading">Start your journey.</h2>
-      <p class="sub" id="subheading">Sign in or create your own account.</p>
-
-      <div class="tabs" role="tablist" aria-label="Account options">
-        <button class="tab active" id="login-tab" type="button" role="tab" aria-selected="true">Sign in</button>
-        <button class="tab" id="signup-tab" type="button" role="tab" aria-selected="false">Create account</button>
+  <main class="content">
+    <section id="page-feed">
+      <div class="between">
+        <div><p class="kicker">YOUR WORLD</p><h1 class="page-title">Home feed</h1></div>
+        <button class="primary" id="jump-post">＋ Create post</button>
       </div>
 
-      <form id="auth-form">
-        <div class="field">
-          <div class="field-head"><label for="email">Email address</label></div>
-          <input id="email" type="email" placeholder="you@example.com" autocomplete="email" required>
-        </div>
+      <div class="panel" id="create-post">
+        <h3 style="margin-top:0">Share a moment</h3>
+        <textarea id="post-text" maxlength="2000" placeholder="What's on your mind?"></textarea>
+        <label for="post-image">Add a photo (optional, max 5 MB)</label>
+        <input id="post-image" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+        <div class="between"><span class="note">Keep it kind. Only upload images you have permission to share.</span><button class="primary" id="publish-btn">Publish ↗</button></div>
+        <p class="status" id="post-status"></p>
+      </div>
+      <div id="feed-list"><div class="panel note">Loading posts…</div></div>
+    </section>
 
-        <div class="field">
-          <div class="field-head"><label for="password">Password</label></div>
-          <div class="password-wrap">
-            <input id="password" type="password" placeholder="At least 6 characters" minlength="6" autocomplete="current-password" required>
-            <button class="show-pass" id="show-pass" type="button" aria-label="Show password">SHOW</button>
-          </div>
-        </div>
-
-        <button class="forgot-btn" id="forgot-password" type="button">Forgot password?</button>
-
-        <div class="field" id="username-field" hidden>
-          <div class="field-head"><label for="username">Choose a username</label></div>
-          <input id="username" type="text" placeholder="yourname" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" autocomplete="username">
-          <p class="hint">3–20 characters: letters, numbers and underscores.</p>
-        </div>
-
-        <button class="primary" id="submit-btn" type="submit">
-          <span id="submit-text">Sign in</span><span>↗</span>
-        </button>
+    <section id="page-search" hidden>
+      <p class="kicker">MEET YOUR PEOPLE</p><h1 class="page-title">Find people</h1>
+      <p class="note">Enter a username to find their profile and start a conversation.</p>
+      <form id="search-form" class="searchbar">
+        <input id="search-input" placeholder="Search username e.g. sunny_09" maxlength="20" required>
+        <button class="primary">Search</button>
       </form>
+      <div class="panel"><div id="search-results" class="note">Search for a username to begin.</div></div>
+    </section>
 
-      <button class="guest" id="guest-btn" type="button">
-        <span>Continue as guest</span><span>→</span>
-      </button>
+    <section id="page-inbox" hidden>
+      <p class="kicker">PRIVATE CONVERSATIONS</p><h1 class="page-title">Your inbox</h1>
+      <div class="panel chat-layout">
+        <div><h3 style="margin-top:0">Chats</h3><div id="chat-list" class="chat-list note">Loading inbox…</div></div>
+        <div class="chat-window">
+          <div class="chat-head" id="chat-title">Choose a conversation</div>
+          <div class="messages" id="messages"><p class="note">Search a username to start chatting.</p></div>
+          <form class="sendrow" id="send-form">
+            <input id="message-input" maxlength="2000" placeholder="Write a message…" autocomplete="off" disabled>
+            <button class="primary" id="send-btn" disabled>Send</button>
+          </form>
+        </div>
+      </div>
+      <p class="note">Only members of a conversation should be able to read its messages. Do not send sensitive information to people you do not know.</p>
+    </section>
 
-      <p class="message" id="message" role="status" aria-live="polite"></p>
-      <p class="terms">By continuing, you agree to use VEYRA respectfully.</p>
-    </div>
+    <section id="page-profile" hidden>
+      <p class="kicker">YOUR SPACE</p><h1 class="page-title">My profile</h1>
+      <div class="panel">
+        <div class="row" style="align-items:center;margin-bottom:20px">
+          <img id="my-avatar" class="avatar big" alt="Your profile picture">
+          <div><h2 id="my-display" style="margin:0 0 5px">Your profile</h2><div class="muted" id="my-username">@username</div></div>
+        </div>
+        <form id="profile-form">
+          <label for="profile-name">Display name</label><input id="profile-name" maxlength="35" required>
+          <label for="profile-bio">Bio</label><textarea id="profile-bio" maxlength="180" placeholder="A little about you…"></textarea>
+          <label for="avatar-file">Profile picture (JPG, PNG, WebP; max 5 MB)</label><input id="avatar-file" type="file" accept="image/jpeg,image/png,image/webp">
+          <button class="primary">Save profile</button>
+        </form>
+        <p class="status" id="profile-status"></p>
+      </div>
+    </section>
+  </main>
+</section>
 
-    <div id="welcome-view" class="welcome-screen" hidden>
-      <div class="welcome-icon">V.</div>
-      <p class="card-kicker">YOU'RE IN VEYRA</p>
-      <h2 id="welcome-title">Welcome.</h2>
-      <p id="welcome-description">Your next chapter starts here.</p>
-      <div class="profile-pill" id="welcome-identity"></div>
-      <p>Your account is connected. People search and private inbox are the next features to build.</p>
-      <button class="secondary" id="back-btn" type="button">Sign out</button>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <strong>VEYRA<span style="color:#f12649">.</span></strong>
-  <span>CONNECT PRIVATELY.</span>
-  <span>© 2026 VEYRA</span>
-</footer>
+<footer><strong>VEYRA<span style="color:#f12649">.</span></strong><span>CONNECT PRIVATELY.</span><span>© 2026 VEYRA</span></footer>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
 import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signInAnonymously,
-  updateProfile,
-  onAuthStateChanged,
-  signOut,
-  sendPasswordResetEmail
+ getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,
+ signInAnonymously,onAuthStateChanged,signOut
 } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import {
+ getFirestore,doc,getDoc,setDoc,updateDoc,collection,addDoc,
+ query,orderBy,limit,onSnapshot,serverTimestamp,runTransaction
+} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+import {
+ getStorage,ref,uploadBytes,getDownloadURL
+} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-storage.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCLCyL9aHA75fOOSKzn-BvBE4KGeJ9gl6k",
-  authDomain: "veyra-ec444.firebaseapp.com",
-  projectId: "veyra-ec444",
-  storageBucket: "veyra-ec444.firebasestorage.app",
-  messagingSenderId: "379323509837",
-  appId: "1:379323509837:web:02275c08cfa206c8ec0004"
+const firebaseConfig={
+ apiKey:"AIzaSyCLCyL9aHA75fOOSKzn-BvBE4KGeJ9gl6k",
+ authDomain:"veyra-ec444.firebaseapp.com",
+ projectId:"veyra-ec444",
+ storageBucket:"veyra-ec444.firebasestorage.app",
+ messagingSenderId:"379323509837",
+ appId:"1:379323509837:web:02275c08cfa206c8ec0004"
+};
+const app=initializeApp(firebaseConfig),auth=getAuth(app),
+ db=getFirestore(app),storage=getStorage(app);
+const $=id=>document.getElementById(id);
+let user=null,me=null,mode="login",activeChat=null,activePeer=null;
+let stopFeed=null,stopChats=null,stopMessages=null,stopProfile=null;
+const clean=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const avatarText=name=>(name||"V").trim().charAt(0).toUpperCase()||"V";
+function status(id,msg,error=false){$(id).textContent=msg;$(id).className="status"+(error?" error":"")}
+function fileOK(file,types=["image/jpeg","image/png","image/webp","image/gif"]){
+ if(!file)return true;
+ if(!types.includes(file.type)){throw Error("Please choose a supported image file.");}
+ if(file.size>5*1024*1024)throw Error("Image must be 5 MB or smaller.");
+ return true;
+}
+function avatarHTML(url,name){
+ return url?`<img class="avatar" src="${clean(url)}" alt="">`:`<div class="avatar">${clean(avatarText(name))}</div>`;
+}
+function showPage(page){
+ document.querySelectorAll(".content>section").forEach(s=>s.hidden=s.id!=="page-"+page);
+ document.querySelectorAll(".navbtn").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+ if(page==="inbox")startChats();
+ if(page==="feed")startFeed();
+}
+document.querySelectorAll(".navbtn").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+$("jump-post").onclick=()=>$("post-text").focus();
+
+function setMode(next){
+ mode=next;const signup=mode==="signup";
+ $("login-tab").classList.toggle("active",!signup);
+ $("signup-tab").classList.toggle("active",signup);
+ $("name-field").hidden=!signup;
+ $("username").required=signup;$("display-name").required=signup;
+ $("auth-heading").textContent=signup?"Create your account.":"Start your journey.";
+ $("auth-sub").textContent=signup?"Choose a username people can find.":"Sign in and reconnect with your people.";
+ $("auth-submit").textContent=signup?"Create account ↗":"Sign in ↗";
+ status("auth-status","");
+}
+$("login-tab").onclick=()=>setMode("login");
+$("signup-tab").onclick=()=>setMode("signup");
+
+function friendlyError(e){
+ const m={
+ "auth/email-already-in-use":"This email already has an account. Please sign in.",
+ "auth/invalid-credential":"Email or password is incorrect.",
+ "auth/weak-password":"Choose a password with at least 6 characters.",
+ "auth/invalid-email":"Please enter a valid email address.",
+ "auth/operation-not-allowed":"Enable this sign-in method in Firebase Authentication.",
+ "auth/unauthorized-domain":"Add your website domain to Firebase Authentication → Settings → Authorized domains.",
+ "permission-denied":"Firebase rules blocked this action. Check the Firestore/Storage rules.",
+ "storage/unauthorized":"Storage rules blocked this upload. Check Firebase Storage rules.",
+ "auth/network-request-failed":"Network error. Check your internet connection."
+ };
+ return m[e.code]||e.message||"Something went wrong. Try again.";
+}
+
+$("auth-form").addEventListener("submit",async e=>{
+ e.preventDefault();const email=$("email").value.trim(),password=$("password").value;
+ $("auth-submit").disabled=true;status("auth-status","Please wait…");
+ try{
+  if(mode==="login"){
+   await signInWithEmailAndPassword(auth,email,password);
+  }else{
+   const displayName=$("display-name").value.trim();
+   const username=$("username").value.trim().toLowerCase();
+   if(!/^[a-z0-9_]{3,20}$/.test(username))throw Error("Username must be 3–20 letters, numbers or underscores.");
+   const cred=await createUserWithEmailAndPassword(auth,email,password);
+   try{
+    await runTransaction(db,async tx=>{
+     const nameRef=doc(db,"usernames",username);
+     const old=await tx.get(nameRef);
+     if(old.exists())throw Error("That username is taken. Choose another one.");
+     tx.set(nameRef,{uid:cred.user.uid});
+     tx.set(doc(db,"users",cred.user.uid),{
+      uid:cred.user.uid,username,displayName:displayName||username,
+      bio:"",photoURL:"",isGuest:false,createdAt:serverTimestamp()
+     });
+    });
+   }catch(err){
+    await signOut(auth);
+    throw err;
+   }
+  }
+ }catch(err){status("auth-status",friendlyError(err),true)}
+ finally{$("auth-submit").disabled=false}
+});
+$("guest-btn").onclick=async()=>{
+ $("guest-btn").disabled=true;
+ try{await signInAnonymously(auth)}
+ catch(e){status("auth-status",friendlyError(e),true)}
+ finally{$("guest-btn").disabled=false}
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const $ = id => document.getElementById(id);
+onAuthStateChanged(auth,async current=>{
+ user=current;
+ if(stopFeed)stopFeed();if(stopChats)stopChats();if(stopMessages)stopMessages();if(stopProfile)stopProfile();
+ stopFeed=stopChats=stopMessages=stopProfile=null;activeChat=null;activePeer=null;
+ $("auth-screen").hidden=!!user;$("app-screen").hidden=!user;$("logout").hidden=!user;
+ if(!user)return;
+ try{
+  const userRef=doc(db,"users",user.uid);let snap=await getDoc(userRef);
+  if(!snap.exists()){
+   const username=user.isAnonymous?("guest_"+user.uid.slice(0,10)).toLowerCase():("member_"+user.uid.slice(0,10)).toLowerCase();
+   await runTransaction(db,async tx=>{
+    const nameRef=doc(db,"usernames",username);
+    tx.set(nameRef,{uid:user.uid});
+    tx.set(userRef,{uid:user.uid,username,displayName:user.isAnonymous?"Guest":username,bio:"",photoURL:"",isGuest:user.isAnonymous,createdAt:serverTimestamp()});
+   });
+   snap=await getDoc(userRef);
+  }
+  me=snap.data();
+  $("my-display").textContent=me.displayName||me.username;
+  $("my-username").textContent="@"+me.username;
+  $("profile-name").value=me.displayName||"";
+  $("profile-bio").value=me.bio||"";
+  if(me.photoURL){$("my-avatar").src=me.photoURL;$("my-avatar").style.visibility="visible"}
+  else{$("my-avatar").removeAttribute("src");$("my-avatar").style.visibility="hidden"}
+  showPage("feed");startFeed();startChats();
+ }catch(e){console.error(e);alert("Could not load your VEYRA profile: "+friendlyError(e))}
+});
+$("logout").onclick=async()=>{
+ if(user?.isAnonymous&&!confirm("Guest accounts may not be recoverable after signing out. Sign out anyway?"))return;
+ await signOut(auth);
+};
 
-let mode = "login";
-let busy = false;
-
-function showMessage(text, type = "error") {
-  $("message").textContent = text;
-  $("message").className = "message " + type;
-}
-
-function setBusy(value) {
-  busy = value;
-  ["submit-btn","guest-btn","login-tab","signup-tab","back-btn","forgot-password"].forEach(id => {
-    const el = $(id);
-    if (el) el.disabled = value;
+// FEED
+function startFeed(){
+ if(stopFeed)stopFeed();
+ const q=query(collection(db,"posts"),orderBy("createdAt","desc"),limit(40));
+ stopFeed=onSnapshot(q,snap=>{
+  const host=$("feed-list");
+  if(snap.empty){host.innerHTML='<div class="panel note">No posts yet. Be the first to share a moment.</div>';return}
+  host.innerHTML="";
+  snap.forEach(s=>{
+   const p=s.data(),id=s.id;
+   const el=document.createElement("article");el.className="panel post";
+   el.innerHTML=`
+    <div class="post-head">
+      ${avatarHTML(p.photoURL,p.displayName)}
+      <div class="userline"><strong>${clean(p.displayName||p.username||"Member")}</strong><small>@${clean(p.username||"member")}</small></div>
+      <small class="muted" style="margin-left:auto">VEYRA</small>
+    </div>
+    ${p.imageURL?`<img class="post-img" src="${clean(p.imageURL)}" alt="Post image" loading="lazy">`:""}
+    ${p.text?`<div class="post-body">${clean(p.text)}</div>`:""}
+    <div class="post-actions">
+      <button class="like-btn">♡ Like</button>
+      <button class="msg-author">Message</button>
+    </div>
+    <div class="post-body note" data-likes>Loading likes…</div>`;
+   el.querySelector(".msg-author").onclick=()=>startChatWith(p.uid);
+   const likesRef=collection(db,"posts",id,"likes");
+   onSnapshot(likesRef,likes=>{
+    el.querySelector("[data-likes]").textContent=`♥ ${likes.size} likes`;
+    const mine=likes.docs.some(d=>d.id===user.uid);
+    const btn=el.querySelector(".like-btn");btn.textContent=mine?"♥ Liked":"♡ Like";
+    btn.onclick=async()=>{
+     btn.disabled=true;
+     try{
+      const myLike=doc(db,"posts",id,"likes",user.uid);
+      if(mine)await importDelete(myLike);else await setDoc(myLike,{uid:user.uid,createdAt:serverTimestamp()});
+     }catch(e){alert(friendlyError(e))}finally{btn.disabled=false}
+    };
+   });
+   host.appendChild(el);
   });
-  $("submit-text").textContent = value
-    ? "Please wait..."
-    : mode === "login" ? "Sign in" : "Create account";
+ },e=>status("post-status",friendlyError(e),true));
 }
-
-function setMode(nextMode) {
-  if (busy) return;
-  mode = nextMode;
-  const signup = mode === "signup";
-
-  $("login-tab").classList.toggle("active", !signup);
-  $("signup-tab").classList.toggle("active", signup);
-  $("login-tab").setAttribute("aria-selected", String(!signup));
-  $("signup-tab").setAttribute("aria-selected", String(signup));
-
-  $("username-field").hidden = !signup;
-  $("username").required = signup;
-  $("password").autocomplete = signup ? "new-password" : "current-password";
-  $("heading").textContent = signup ? "Create your account." : "Start your journey.";
-  $("subheading").textContent = signup
-    ? "Your own space starts with a few details."
-    : "Sign in and reconnect with your people.";
-  $("submit-text").textContent = signup ? "Create account" : "Sign in";
-  $("forgot-password").hidden = signup;
-  showMessage("");
+async function importDelete(refDoc){
+ const {deleteDoc}=await import("https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js");
+ return deleteDoc(refDoc);
 }
+$("publish-btn").onclick=async()=>{
+ if(!user)return;
+ const text=$("post-text").value.trim(),file=$("post-image").files[0];
+ if(!text&&!file){status("post-status","Write something or choose a photo.",true);return}
+ const btn=$("publish-btn");btn.disabled=true;status("post-status","Publishing…");
+ try{
+  fileOK(file);
+  let imageURL="";
+  if(file){
+   const path=`posts/${user.uid}/${crypto.randomUUID()}_${file.name.replace(/[^a-zA-Z0-9._-]/g,"_")}`;
+   const r=ref(storage,path);await uploadBytes(r,file,{contentType:file.type});imageURL=await getDownloadURL(r);
+  }
+  await addDoc(collection(db,"posts"),{
+   uid:user.uid,username:me.username,displayName:me.displayName||me.username,
+   photoURL:me.photoURL||"",text,imageURL,createdAt:serverTimestamp()
+  });
+  $("post-text").value="";$("post-image").value="";
+  status("post-status","Posted successfully.");
+ }catch(e){status("post-status",friendlyError(e),true)}
+ finally{btn.disabled=false}
+};
 
-$("login-tab").addEventListener("click", () => setMode("login"));
-$("signup-tab").addEventListener("click", () => setMode("signup"));
+// SEARCH USERNAME
+$("search-form").onsubmit=async e=>{
+ e.preventDefault();const username=$("search-input").value.trim().toLowerCase();
+ const host=$("search-results");host.textContent="Searching…";
+ if(!/^[a-z0-9_]{3,20}$/.test(username)){host.textContent="Enter a valid username.";return}
+ try{
+  const nameSnap=await getDoc(doc(db,"usernames",username));
+  if(!nameSnap.exists()){host.textContent="No account found with that username.";return}
+  const uid=nameSnap.data().uid;
+  const snap=await getDoc(doc(db,"users",uid));
+  if(!snap.exists()){host.textContent="This profile is unavailable.";return}
+  const p=snap.data();host.innerHTML="";
+  const row=document.createElement("div");row.className="listitem";
+  row.innerHTML=`${avatarHTML(p.photoURL,p.displayName)}<div class="userline"><strong>${clean(p.displayName||p.username)}</strong><small>@${clean(p.username)}</small><div class="note">${clean(p.bio||"")}</div></div>`;
+  const btn=document.createElement("button");btn.className="primary right";btn.textContent="Message";
+  btn.onclick=()=>startChatWith(p.uid);
+  if(p.uid===user.uid){btn.textContent="Your profile";btn.disabled=true}
+  row.appendChild(btn);host.appendChild(row);
+ }catch(err){host.textContent=friendlyError(err)}
+};
 
-$("show-pass").addEventListener("click", () => {
-  const field = $("password");
-  const visible = field.type === "password";
-  field.type = visible ? "text" : "password";
-  $("show-pass").textContent = visible ? "HIDE" : "SHOW";
-  $("show-pass").setAttribute("aria-label", visible ? "Hide password" : "Show password");
-});
-
-function errorText(error) {
-  const errors = {
-    "auth/invalid-email":"Please enter a valid email address.",
-    "auth/missing-password":"Please enter your password.",
-    "auth/weak-password":"Choose a stronger password with at least 6 characters.",
-    "auth/email-already-in-use":"This email already has an account. Please sign in.",
-    "auth/invalid-credential":"Email or password is incorrect.",
-    "auth/user-not-found":"Account not found. Create an account first.",
-    "auth/wrong-password":"Incorrect password. Try again.",
-    "auth/too-many-requests":"Too many attempts. Try again later.",
-    "auth/network-request-failed":"Network error. Check your connection.",
-    "auth/operation-not-allowed":"Enable this sign-in method in Firebase Authentication.",
-    "auth/unauthorized-domain":"Add your website domain to Firebase Authorized Domains."
-  };
-  return errors[error.code] || "Something went wrong. Please try again.";
+// CHATS
+function chatIdFor(a,b){return[a,b].sort().join("__")}
+async function startChatWith(peerUid){
+ if(!peerUid||peerUid===user.uid){alert("Choose another user's profile to start a chat.");return}
+ try{
+  const peerSnap=await getDoc(doc(db,"users",peerUid));
+  if(!peerSnap.exists())throw Error("This user is unavailable.");
+  const peer=peerSnap.data(),id=chatIdFor(user.uid,peerUid);
+  const chatRef=doc(db,"chats",id),existing=await getDoc(chatRef);
+  if(!existing.exists()){
+   await setDoc(chatRef,{members:[user.uid,peerUid].sort(),createdAt:serverTimestamp(),lastMessage:"",lastMessageAt:serverTimestamp()});
+  }
+  activeChat=id;activePeer=peer;
+  $("chat-title").textContent="@"+peer.username;
+  $("message-input").disabled=false;$("send-btn").disabled=false;
+  showPage("inbox");startMessages(id);startChats();
+ }catch(e){alert(friendlyError(e))}
 }
-
-function showWelcome(user) {
-  $("auth-view").hidden = true;
-  $("welcome-view").hidden = false;
-
-  const name = user.isAnonymous
-    ? "Guest"
-    : user.displayName || (user.email ? user.email.split("@")[0] : "Member");
-
-  $("welcome-title").textContent = `Welcome, ${name}.`;
-  $("welcome-description").textContent = user.isAnonymous
-    ? "You're exploring VEYRA as a guest."
-    : "You've successfully signed in to VEYRA.";
-  $("welcome-identity").textContent = user.isAnonymous
-    ? "GUEST ACCOUNT"
-    : "@" + name;
+function startChats(){
+ if(!user)return;if(stopChats)stopChats();
+ const q=query(collection(db,"chats"),orderBy("lastMessageAt","desc"),limit(50));
+ stopChats=onSnapshot(q,snap=>{
+  const host=$("chat-list");host.innerHTML="";
+  const mine=snap.docs.filter(s=>(s.data().members||[]).includes(user.uid));
+  if(!mine.length){host.textContent="No chats yet. Search for someone to start a conversation.";return}
+  mine.forEach(s=>{
+   const c=s.data(),peerUid=c.members.find(x=>x!==user.uid);
+   if(!peerUid)return;
+   getDoc(doc(db,"users",peerUid)).then(ps=>{
+    if(!ps.exists())return;const p=ps.data();
+    const b=document.createElement("button");b.style.cssText="display:block;width:100%;text-align:left;margin:5px 0";
+    b.innerHTML=`<strong>@${clean(p.username)}</strong><br><span class="note">${clean((c.lastMessage||"Start a conversation").slice(0,55))}</span>`;
+    b.onclick=()=>{activeChat=s.id;activePeer=p;$("chat-title").textContent="@"+p.username;$("message-input").disabled=false;$("send-btn").disabled=false;startMessages(s.id)};
+    host.appendChild(b);
+   });
+  });
+ },e=>console.error("Inbox:",e));
 }
-
-onAuthStateChanged(auth, user => {
-  if (user) {
-    showWelcome(user);
-  } else {
-    $("welcome-view").hidden = true;
-    $("auth-view").hidden = false;
-  }
-});
-
-$("auth-form").addEventListener("submit", async event => {
-  event.preventDefault();
-  if (busy) return;
-
-  const email = $("email").value.trim();
-  const password = $("password").value;
-  const username = $("username").value.trim();
-
-  if (mode === "signup" && !/^[A-Za-z0-9_]{3,20}$/.test(username)) {
-    showMessage("Username must be 3–20 characters: letters, numbers or underscores.");
-    return;
-  }
-
-  setBusy(true);
-  showMessage("");
-
-  try {
-    if (mode === "signup") {
-      const credential = await createUserWithEmailAndPassword(auth, email, password);
-      await updateProfile(credential.user, { displayName: username });
-      showWelcome(credential.user);
-    } else {
-      const credential = await signInWithEmailAndPassword(auth, email, password);
-      showWelcome(credential.user);
-    }
-  } catch (error) {
-    showMessage(errorText(error));
-  } finally {
-    setBusy(false);
-  }
-});
-
-$("guest-btn").addEventListener("click", async () => {
-  if (busy) return;
-  setBusy(true);
-  showMessage("");
-
-  try {
-    const credential = await signInAnonymously(auth);
-    showWelcome(credential.user);
-  } catch (error) {
-    showMessage(errorText(error));
-  } finally {
-    setBusy(false);
-  }
-});
-
-$("forgot-password").addEventListener("click", async () => {
-  const email = $("email").value.trim();
-
-  if (!email) {
-    showMessage("Enter your email address first.");
-    $("email").focus();
-    return;
-  }
-
-  try {
-    await sendPasswordResetEmail(auth, email);
-    showMessage("If an account exists for this email, a password reset email will be sent.", "success");
-  } catch (error) {
-    showMessage(errorText(error));
-  }
-});
-
-$("back-btn").addEventListener("click", async () => {
-  if (busy) return;
-  setBusy(true);
-
-  try {
-    await signOut(auth);
-    $("password").value = "";
-    showMessage("Signed out successfully.", "success");
-  } catch (error) {
-    showMessage(errorText(error));
-  } finally {
-    setBusy(false);
-  }
-});
-
-/* INTRO ANIMATION */
-const introScreen = $("veyra-intro");
-const introMovie = $("intro-video");
-const introSkip = $("intro-skip");
-const introProgress = $("intro-progress");
-let introClosed = false;
-let introFallbackTimer;
-
-function closeVeyraIntro() {
-  if (introClosed) return;
-  introClosed = true;
-  clearTimeout(introFallbackTimer);
-  introScreen.classList.add("finished");
-  introMovie.pause();
-  setTimeout(() => introScreen.remove(), 800);
+function startMessages(id){
+ if(stopMessages)stopMessages();
+ const q=query(collection(db,"chats",id,"messages"),orderBy("createdAt","asc"),limit(150));
+ stopMessages=onSnapshot(q,snap=>{
+  const host=$("messages");host.innerHTML="";
+  snap.forEach(s=>{
+   const m=s.data(),b=document.createElement("div");
+   b.className="bubble"+(m.uid===user.uid?" mine":"");b.textContent=m.text||"";
+   host.appendChild(b);
+  });
+  host.scrollTop=host.scrollHeight;
+ },e=>{$("messages").textContent=friendlyError(e)});
 }
+$("send-form").onsubmit=async e=>{
+ e.preventDefault();const text=$("message-input").value.trim();
+ if(!text||!activeChat||!activePeer)return;
+ const btn=$("send-btn");btn.disabled=true;
+ try{
+  const chatRef=doc(db,"chats",activeChat);
+  await addDoc(collection(db,"chats",activeChat,"messages"),{
+   uid:user.uid,text,createdAt:serverTimestamp()
+  });
+  await updateDoc(chatRef,{lastMessage:text,lastMessageAt:serverTimestamp()});
+  $("message-input").value="";
+ }catch(e){alert(friendlyError(e))}
+ finally{btn.disabled=false}
+};
 
-introSkip.addEventListener("click", closeVeyraIntro);
-introMovie.addEventListener("ended", closeVeyraIntro);
-introMovie.addEventListener("error", closeVeyraIntro);
-
-introMovie.addEventListener("timeupdate", () => {
-  if (introMovie.duration && Number.isFinite(introMovie.duration)) {
-    introProgress.style.width =
-      `${(introMovie.currentTime / introMovie.duration) * 100}%`;
+// PROFILE EDIT
+$("profile-form").onsubmit=async e=>{
+ e.preventDefault();const btn=e.submitter;btn.disabled=true;status("profile-status","Saving…");
+ try{
+  const displayName=$("profile-name").value.trim(),bio=$("profile-bio").value.trim(),file=$("avatar-file").files[0];
+  if(!displayName)throw Error("Display name is required.");
+  let photoURL=me.photoURL||"";
+  if(file){
+   fileOK(file,["image/jpeg","image/png","image/webp"]);
+   const r=ref(storage,`avatars/${user.uid}/profile_${Date.now()}`);
+   await uploadBytes(r,file,{contentType:file.type});photoURL=await getDownloadURL(r);
   }
-});
-
-introFallbackTimer = setTimeout(closeVeyraIntro, 15000);
-
-if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  closeVeyraIntro();
-} else {
-  introMovie.play().catch(() => closeVeyraIntro());
-}
+  await updateDoc(doc(db,"users",user.uid),{displayName,bio,photoURL});
+  me={...me,displayName,bio,photoURL};
+  $("my-display").textContent=displayName;
+  if(photoURL){$("my-avatar").src=photoURL;$("my-avatar").style.visibility="visible"}
+  status("profile-status","Profile saved.");
+ }catch(e){status("profile-status",friendlyError(e),true)}
+ finally{btn.disabled=false}
+};
 </script>
 </body>
 </html>
